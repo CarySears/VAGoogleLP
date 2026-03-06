@@ -239,6 +239,51 @@
     }
     .included-item p { font-size: 0.92rem; opacity: 0.85; }
 
+    .media-section {
+      padding: 5rem 2rem;
+      background: #fff;
+    }
+
+    .media-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .media-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .media-card {
+      background: #fff;
+      border: 1px solid #e8deef;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    }
+
+    .media-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.7rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .media-card p {
+      color: var(--warm-gray);
+      margin-bottom: 0.8rem;
+      font-size: 0.94rem;
+    }
+
+    .media-video {
+      width: 100%;
+      border-radius: 8px;
+      background: #000;
+      max-height: 460px;
+    }
+
     .bio-section {
       padding: 5rem 2rem;
       background: var(--cream);
@@ -474,6 +519,25 @@
       font-weight: 700;
     }
 
+    .calendar-modal-note {
+      margin-top: 0.5rem;
+      color: var(--warm-gray);
+    }
+
+    .calendar-modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .btn-link {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .debug-panel {
       position: fixed;
       right: 14px;
@@ -623,6 +687,31 @@
     </div>
   </section>
 
+  <section class="media-section" id="videos">
+    <div class="media-wrap">
+      <h2 class="section-title">See the Vesping Around Experience</h2>
+      <p class="section-subtitle">A quick look at the rides, places, and real traveler moments you can expect.</p>
+      <div class="media-inner">
+        <article class="media-card">
+          <h3>Promo Video</h3>
+          <p>Get a feel for the style, pace, and atmosphere of a Vesping Around trip.</p>
+          <video class="media-video" controls playsinline preload="metadata">
+            <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/quicktime">
+            <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov">Watch promo video</a>
+          </video>
+        </article>
+        <article class="media-card">
+          <h3>Traveler Testimonials</h3>
+          <p>Hear directly from travelers who experienced Vesping Around with Mauro.</p>
+          <video class="media-video" controls playsinline preload="metadata">
+            <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68ffd3c4ab226db3c51ecb66.mp4" type="video/mp4">
+            <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68ffd3c4ab226db3c51ecb66.mp4">Watch testimonial video</a>
+          </video>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="bio-section" id="mauro-bio">
     <div class="bio-inner">
       <div class="bio-image-wrap">
@@ -736,15 +825,24 @@
   <div class="calendar-modal" id="calendar-modal" hidden>
     <div class="calendar-modal-card" role="dialog" aria-modal="true" aria-labelledby="calendar-modal-title">
       <button type="button" class="calendar-modal-close" id="close-calendar-modal" aria-label="Close calendar modal">X</button>
-      <h3 class="calendar-modal-title" id="calendar-modal-title">Book your free, no-stress consultation with Mauro</h3>
+      <h3 class="calendar-modal-title" id="calendar-modal-title">Book your free, no-pressure planning consultation with Mauro</h3>
       <p>
-        You're almost done. Choose a time that works for you and Mauro will help you plan your perfect trip.
+        This is a travel-planning conversation, not a trip booking commitment. Choose a time that works for you.
       </p>
-      <div class="calendar-placeholder">
-        Booking calendar placeholder: add your Calendly or GHL calendar embed here.
-      </div>
-      <div class="quiz-nav">
-        <button type="button" class="btn btn-primary" id="calendar-modal-done">Done</button>
+      <p class="calendar-modal-note">
+        Mauro will review your quiz responses and help you map out the right Italy route with zero pressure.
+      </p>
+      <div class="calendar-modal-actions">
+        <a
+          href="https://link.vespingaround.com/widget/booking/9oRAvAERRoh3ex8DTrWR"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-link"
+          id="calendar-book-link"
+        >
+          Schedule Free Planning Call
+        </a>
+        <button type="button" class="btn btn-secondary" id="calendar-modal-done">Not now</button>
       </div>
     </div>
   </div>
@@ -876,6 +974,7 @@
       const calendarModal = document.getElementById("calendar-modal");
       const closeCalendarModalBtn = document.getElementById("close-calendar-modal");
       const calendarModalDoneBtn = document.getElementById("calendar-modal-done");
+      const calendarBookLink = document.getElementById("calendar-book-link");
       const debugPanel = document.getElementById("debug-panel");
 
       let currentStep = 0;
@@ -1102,6 +1201,9 @@
 
       closeCalendarModalBtn.addEventListener("click", closeCalendarModal);
       calendarModalDoneBtn.addEventListener("click", closeCalendarModal);
+      calendarBookLink.addEventListener("click", function () {
+        postWebhook("calendar_cta_clicked");
+      });
       calendarModal.addEventListener("click", function (event) {
         if (event.target === calendarModal) closeCalendarModal();
       });
