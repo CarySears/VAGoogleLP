@@ -311,6 +311,19 @@
       font-size: 0.94rem;
     }
 
+    .media-help {
+      margin-top: 0.65rem;
+      color: var(--warm-gray);
+      font-size: 0.88rem;
+    }
+
+    .media-link {
+      margin-top: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
     .media-video {
       width: 100%;
       border-radius: 8px;
@@ -757,12 +770,28 @@
       <p class="section-subtitle">A quick look at the rides, places, and real traveler moments you can expect.</p>
       <div class="media-inner">
         <article class="media-card">
-          <h3>Promo Video</h3>
-          <p>Get a feel for the style, pace, and atmosphere of a Vesping Around trip.</p>
-          <video class="media-video" controls playsinline preload="metadata">
+          <h3>Experience Film</h3>
+          <p>A cinematic preview of the Vesping Around style, pace, and atmosphere.</p>
+          <video
+            class="media-video"
+            controls
+            playsinline
+            preload="none"
+            poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68375cf43786e52d0f54dcd2.jpeg"
+          >
+            <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/mp4">
             <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/quicktime">
-            <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov">Watch promo video</a>
+            <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov">Watch experience film</a>
           </video>
+          <p class="media-help">If your browser cannot play this file inline, open the full video directly.</p>
+          <a
+            class="btn btn-secondary btn-link media-link"
+            href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Full Experience Film
+          </a>
         </article>
         <article class="media-card">
           <h3>Traveler Testimonials</h3>
