@@ -1,637 +1,1056 @@
- ::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-
---terracotta: #C4623A;
-
---olive: #6B7B3A;
-
---cream: #F8F3EC;
-
---dark: #2C2417;
-
---warm-gray: #8C7B6B;
-
---gold: #D4A853;
-
-}
-
-body {
-
-font-family: 'Lato', sans-serif;
-
-background: var(--cream);
-
-color: var(--dark);
-
-line-height: 1.6;
-
-}
-
-/ ── NAV ── /
-
-nav {
-
-padding: 1rem 2rem;
-
-display: flex;
-
-justify-content: space-between;
-
-align-items: center;
-
-background: white;
-
-box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-
-position: sticky;
-
-top: 0;
-
-z-index: 100;
-
-}
-
-.logo-text {
-
-font-family: 'Cormorant Garamond', serif;
-
-font-size: 1.5rem;
-
-font-weight: 700;
-
-color: var(--dark);
-
-text-decoration: none;
-
-}
-
-.nav-cta {
-
-background: var(--terracotta);
-
-color: white;
-
-padding: 0.6rem 1.4rem;
-
-border-radius: 4px;
-
-text-decoration: none;
-
-font-weight: 700;
-
-font-size: 0.9rem;
-
-letter-spacing: 0.05em;
-
-text-transform: uppercase;
-
-}
-
-/ ── HERO ── /
-
-.hero {
-
-background:
-
-linear-gradient(135deg, rgba(44,36,23,0.72) 0%, rgba(44,36,23,0.42) 100%),
-
-url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
-
-min-height: 88vh;
-
-display: flex;
-
-flex-direction: column;
-
-justify-content: center;
-
-align-items: center;
-
-text-align: center;
-
-padding: 4rem 2rem;
-
-color: white;
-
-}
-
-/ Replace with your own hero photo — swap the URL above /
-
-.destination-badge {
-
-background: var(--gold);
-
-color: var(--dark);
-
-padding: 0.4rem 1.2rem;
-
-border-radius: 20px;
-
-font-size: 0.85rem;
-
-font-weight: 700;
-
-letter-spacing: 0.1em;
-
-text-transform: uppercase;
-
-margin-bottom: 1.5rem;
-
-display: none; / shown by JS when ?destination= detected /
-
-}
-
-.hero h1 {
-
-font-family: 'Cormorant Garamond', serif;
-
-font-size: clamp(2.2rem, 5vw, 4rem);
-
-font-weight: 700;
-
-line-height: 1.15;
-
-max-width: 820px;
-
-margin-bottom: 1.2rem;
-
-text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-
-}
-
-.hero p {
-
-font-size: clamp(1rem, 2vw, 1.25rem);
-
-max-width: 620px;
-
-margin-bottom: 2.5rem;
-
-opacity: 0.95;
-
-font-weight: 300;
-
-}
-
-.hero-cta {
-
-background: var(--terracotta);
-
-color: white;
-
-padding: 1rem 2.5rem;
-
-border-radius: 4px;
-
-text-decoration: none;
-
-font-weight: 700;
-
-font-size: 1.1rem;
-
-letter-spacing: 0.05em;
-
-text-transform: uppercase;
-
-display: inline-block;
-
-transition: transform 0.2s, background 0.2s;
-
-}
-
-.hero-cta:hover { background: #B5502A; transform: translateY(-2px); }
-
-.trust-bar {
-
-display: flex;
-
-gap: 2rem;
-
-justify-content: center;
-
-flex-wrap: wrap;
-
-margin-top: 3rem;
-
-padding-top: 2rem;
-
-border-top: 1px solid rgba(255,255,255,0.3);
-
-font-size: 0.9rem;
-
-opacity: 0.92;
-
-}
-
-.trust-item { display: flex; align-items: center; gap: 0.5rem; }
-
-/ ── DESTINATIONS ── /
-
-.section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-
-.section-title {
-
-font-family: 'Cormorant Garamond', serif;
-
-font-size: 2.5rem;
-
-font-weight: 600;
-
-text-align: center;
-
-margin-bottom: 0.75rem;
-
-}
-
-.section-subtitle {
-
-text-align: center;
-
-color: var(--warm-gray);
-
-font-size: 1.1rem;
-
-margin-bottom: 3rem;
-
-}
-
-.destinations-grid {
-
-display: grid;
-
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-gap: 2rem;
-
-}
-
-.destination-card {
-
-background: white;
-
-border-radius: 8px;
-
-overflow: hidden;
-
-box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-
-transition: transform 0.2s, box-shadow 0.2s;
-
-}
-
-.destination-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.13); }
-
-.destination-card.highlighted { border: 3px solid var(--gold); }
-
-.card-image { height: 200px; background-size: cover; background-position: center; }
-
-/ Replace these with your own trip photos /
-
-.tuscany-img { background-image: url('https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&q=80'); }
-
-.sicily-img { background-image: url('https://images.unsplash.com/photo-1551918120-9739cb430c6d?w=600&q=80'); }
-
-.puglia-img { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'); }
-
-.card-body { padding: 1.5rem; }
-
-.card-body h3 {
-
-font-family: 'Cormorant Garamond', serif;
-
-font-size: 1.6rem;
-
-font-weight: 600;
-
-margin-bottom: 0.5rem;
-
-}
-
-.card-body p { color: var(--warm-gray); font-size: 0.95rem; margin-bottom: 1rem; }
-
-.card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-
-.tag {
-
-background: var(--cream);
-
-color: var(--dark);
-
-padding: 0.3rem 0.8rem;
-
-border-radius: 20px;
-
-font-size: 0.8rem;
-
-font-weight: 600;
-
-}
-
-/ ── WHAT'S INCLUDED ── /
-
-.included-section { background: var(--dark); color: white; padding: 5rem 2rem; }
-
-.included-inner { max-width: 1100px; margin: 0 auto; }
-
-.included-section .section-title { color: white; }
-
-.included-section .section-subtitle { color: rgba(255,255,255,0.65); }
-
-.included-grid {
-
-display: grid;
-
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-
-gap: 2rem;
-
-margin-top: 3rem;
-
-}
-
-.included-item { text-align: center; padding: 1.5rem; }
-
-.included-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-
-.included-item h4 {
-
-font-family: 'Cormorant Garamond', serif;
-
-font-size: 1.3rem;
-
-margin-bottom: 0.5rem;
-
-color: var(--gold);
-
-}
-
-.included-item p { font-size: 0.9rem; opacity: 0.8; }
-
-/ ── FORM ── /
-
-.form-section { background: white; padding: 5rem 2rem; }
-
-.form-inner { max-width: 700px; margin: 0 auto; text-align: center; }
-
-.form-wrapper {
-
-margin-top: 2rem;
-
-min-height: 500px;
-
-/ GHL form embed goes inside here /
-
-}
-
-/ ── FOOTER ── /
-
-footer {
-
-background: var(--dark);
-
-color: rgba(255,255,255,0.55);
-
-text-align: center;
-
-padding: 2rem;
-
-font-size: 0.85rem;
-
-}
-
-footer a { color: var(--gold); text-decoration: none; }
-
-/ ── MOBILE ── /
-
-@media (max-width: 600px) {
-
-.trust-bar { flex-direction: column; align-items: center; gap: 1rem; }
-
-.destinations-grid { grid-template-columns: 1fr; }
-
-.included-grid { grid-template-columns: repeat(2, 1fr); }
-
-nav .nav-cta { font-size: 0.8rem; padding: 0.5rem 1rem; }
-
-}
-
-
-
-Vesping Around
-
-Book Free Consult
-
-Guided Vespa Vacations Through Italy's Most Beautiful Regions
-
-All-inclusive, fully guided multi-day tours — Mauro helps you find your perfect Italian adventure.
-
-Book Your Free Consultation
-
-✅ Fully All-Inclusive
-
-✅ Expert Local Guides
-
-✅ Small Groups Only
-
-✅ Free Consult with Mauro
-
-Choose Your Italian Adventure
-
-Three iconic regions. One unforgettable experience. Mauro helps you pick the perfect fit.
-
-Tuscany
-
-Wind through Chianti, medieval hilltowns, and cypress-lined roads on a classic scooter.
-
-Chianti Valley
-
-Hilltowns
-
-May & October
-
-Sicily
-
-Explore ancient temples, coastal villages, and the soul of the Mediterranean by scooter.
-
-Coastal Roads
-
-Greek Temples
-
-June & October
-
-Puglia
-
-Discover whitewashed trulli villages and the hidden heel of Italy — off the beaten path.
-
-Trulli Villages
-
-Valle d'Itria
-
-September
-
-Everything Included. Nothing to Plan.
-
-This is a fully curated, all-inclusive vacation — not a rental or a day tour.
-
-🛵
-
-Classic Scooter
-
-Fully serviced vintage scooter with safety briefing and support vehicle throughout
-
-🏨
-
-Accommodations
-
-Hand-selected boutique hotels and agriturismos along the route
-
-🍽️
-
-Meals & Tastings
-
-Regional dining, local markets, and authentic trattorias — all arranged
-
-🗺️
-
-Expert Guide
-
-Local expert guide for the entire journey — never a tour bus in sight
-
-📋
-
-Full Itinerary
-
-Every day planned, every detail handled — you just ride and enjoy
-
-🤝
-
-Mauro's Expertise
-
-Personal consultation to match you to the perfect trip and destination
-
-Plan Your Perfect Trip with Mauro
-
-Tell us a little about yourself — Mauro will reach out to help you find the perfect Vespa vacation in Italy.
-
-║
-
-╚══════════════════════════════════════════════╝
-
--->
-
-© 2026 Vesping Around · All-Inclusive Guided Vespa Tours in Italy
-
-Vespa® is a registered trademark of Piaggio & C. SpA. Vesping Around is not affiliated with Piaggio.
-
-
-const destinations = {
-
-tuscany: {
-
-badge: "🇮🇹 Tuscany",
-
-headline: "Ride Through Tuscany on a Classic Vespa",
-
-subheadline: "All-inclusive, fully guided multi-day tours through Chianti, medieval hilltowns & the Tuscan countryside.",
-
-formSubheadline: "Tell us about yourself — Mauro will reach out to plan your perfect Tuscany adventure.",
-
-highlightCard: "card-tuscany"
-
-},
-
-sicily: {
-
-badge: "🇮🇹 Sicily",
-
-headline: "Explore Sicily on a Classic Vespa",
-
-subheadline: "All-inclusive, fully guided multi-day tours through coastal villages, ancient temples & Sicilian culture.",
-
-formSubheadline: "Tell us about yourself — Mauro will reach out to plan your perfect Sicily adventure.",
-
-highlightCard: "card-sicily"
-
-},
-
-puglia: {
-
-badge: "🇮🇹 Puglia",
-
-headline: "Discover Hidden Puglia by Vespa",
-
-subheadline: "All-inclusive, fully guided multi-day tours through whitewashed trulli villages & the hidden heel of Italy.",
-
-formSubheadline: "Tell us about yourself — Mauro will reach out to plan your perfect Puglia adventure.",
-
-highlightCard: "card-puglia"
-
-}
-
-};
-
-// 1. Read ?destination= from URL
-
-const params = new URLSearchParams(window.location.search);
-
-const dest = params.get("destination")?.toLowerCase();
-
-const content = destinations[dest];
-
-if (content) {
-
-// 2. Update hero headline & subheadline
-
-document.getElementById("hero-headline").textContent = content.headline;
-
-document.getElementById("hero-subheadline").textContent = content.subheadline;
-
-// 3. Show destination badge
-
-const badge = document.getElementById("destination-badge");
-
-badge.textContent = content.badge;
-
-badge.style.display = "inline-block";
-
-// 4. Update form section subheadline
-
-document.getElementById("form-subheadline").textContent = content.formSubheadline;
-
-// 5. Highlight the matching destination card
-
-const card = document.getElementById(content.highlightCard);
-
-if (card) card.classList.add("highlighted");
-
-}
-
-// 6. Pass ?destination= into the GHL iframe src so GHL can pre-fill the dropdown
-
-window.addEventListener("DOMContentLoaded", function () {
-
-const iframe = document.querySelector("#ghl-form-wrapper iframe");
-
-if (iframe && dest) {
-
-try {
-
-const iframeSrc = new URL(iframe.src);
-
-iframeSrc.searchParams.set("destination", dest);
-
-iframe.src = iframeSrc.toString();
-
-} catch (e) {
-
-// iframe src not a full URL — append manually
-
-iframe.src += (iframe.src.includes("?") ? "&" : "?") + "destination=" + dest;
-
-}
-
-}
-
-});
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vesping Around — Guided Vespa Tours in Italy</title>
+  <meta name="description" content="All-inclusive, fully guided multi-day Vespa tours through Tuscany, Sicily, and Puglia. Plan your perfect Italian adventure with Mauro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --terracotta: #C4623A;
+      --olive: #6B7B3A;
+      --cream: #F8F3EC;
+      --dark: #2C2417;
+      --warm-gray: #8C7B6B;
+      --gold: #D4A853;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      background: var(--terracotta);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: #B5502A; }
+
+    /* ── HERO ── */
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(44,36,23,0.72) 0%, rgba(44,36,23,0.42) 100%),
+        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat;
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: white;
+    }
+
+    .destination-badge {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: none;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      max-width: 820px;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      background: var(--terracotta);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: inline-block;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .hero-cta:hover { background: #B5502A; transform: translateY(-2px); }
+
+    .trust-bar {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      font-size: 0.9rem;
+      opacity: 0.92;
+    }
+
+    .trust-item { display: flex; align-items: center; gap: 0.5rem; }
+
+    /* ── DESTINATIONS ── */
+    .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--warm-gray);
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .destination-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .destination-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.13); }
+    .destination-card.highlighted { border: 3px solid var(--gold); }
+
+    .card-image { height: 200px; background-size: cover; background-position: center; }
+    .tuscany-img { background-image: url('https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&q=80'); }
+    .sicily-img  { background-image: url('https://images.unsplash.com/photo-1551918120-9739cb430c6d?w=600&q=80'); }
+    .puglia-img  { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'); }
+
+    .card-body { padding: 1.5rem; }
+
+    .card-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body p { color: var(--warm-gray); font-size: 0.95rem; margin-bottom: 1rem; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .tag {
+      background: var(--cream);
+      color: var(--dark);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ── WHAT'S INCLUDED ── */
+    .included-section { background: var(--dark); color: white; padding: 5rem 2rem; }
+    .included-inner { max-width: 1100px; margin: 0 auto; }
+    .included-section .section-title { color: white; }
+    .included-section .section-subtitle { color: rgba(255,255,255,0.65); }
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .included-item { text-align: center; padding: 1.5rem; }
+    .included-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+    .included-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--gold);
+    }
+
+    .included-item p { font-size: 0.9rem; opacity: 0.8; }
+
+    /* ── QUIZ SECTION ── */
+    .quiz-section { background: white; padding: 5rem 2rem; }
+
+    .quiz-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quiz-section-header { margin-bottom: 2.5rem; }
+
+    .quiz-section-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-section-header p {
+      color: var(--warm-gray);
+      font-size: 1.05rem;
+    }
+
+    /* Progress bar */
+    .quiz-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .progress-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ddd;
+      transition: background 0.3s, transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .progress-dot.active    { background: var(--terracotta); transform: scale(1.4); }
+    .progress-dot.completed { background: var(--olive); }
+
+    .progress-line {
+      flex: 1;
+      max-width: 40px;
+      height: 2px;
+      background: #e0d8ce;
+      border-radius: 2px;
+    }
+
+    /* Quiz steps */
+    .quiz-step { display: none; }
+    .quiz-step.active { display: block; animation: fadeUp 0.3s ease; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%       { transform: translateX(-6px); }
+      60%       { transform: translateX(6px); }
+    }
+
+    .quiz-step .step-question {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .quiz-step .step-hint {
+      color: var(--warm-gray);
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-option {
+      padding: 1.1rem 0.75rem;
+      border: 2px solid #e0d8ce;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s, transform 0.15s;
+      background: var(--cream);
+      text-align: center;
+      user-select: none;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--terracotta);
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--terracotta);
+      background: white;
+      box-shadow: 0 0 0 1px var(--terracotta);
+    }
+
+    .quiz-option .opt-icon  { font-size: 1.7rem; display: block; margin-bottom: 0.35rem; }
+    .quiz-option .opt-label { display: block; font-size: 0.9rem; font-weight: 700; color: var(--dark); }
+    .quiz-option .opt-sub   { display: block; font-size: 0.78rem; color: var(--warm-gray); margin-top: 0.15rem; }
+
+    .quiz-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-back {
+      background: transparent;
+      color: var(--warm-gray);
+      border: none;
+      font-size: 0.95rem;
+      font-family: 'Lato', sans-serif;
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-back:hover { color: var(--dark); }
+
+    .btn-next {
+      flex: 1;
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      padding: 0.9rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-next:hover { background: #B5502A; transform: translateY(-1px); }
+
+    /* ── CONTACT FORM (last step) ── */
+    .contact-step { text-align: left; }
+    .contact-step .step-question,
+    .contact-step .step-hint { text-align: center; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group { margin-bottom: 1.1rem; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #e0d8ce;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      transition: border-color 0.2s, background 0.2s;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--terracotta);
+      background: white;
+    }
+
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.25rem;
+    }
+
+    .btn-submit:hover { background: #B5502A; transform: translateY(-1px); }
+    .btn-submit:disabled { background: #bbb; cursor: not-allowed; transform: none; }
+
+    .form-privacy {
+      font-size: 0.78rem;
+      color: var(--warm-gray);
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .quiz-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+      animation: fadeUp 0.4s ease;
+    }
+
+    .quiz-success.active { display: block; }
+    .success-icon { font-size: 4rem; margin-bottom: 1.25rem; }
+
+    .quiz-success h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-success p {
+      color: var(--warm-gray);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .trust-bar { flex-direction: column; align-items: center; gap: 1rem; }
+      .destinations-grid { grid-template-columns: 1fr; }
+      .included-grid { grid-template-columns: repeat(2, 1fr); }
+      nav .nav-cta { font-size: 0.8rem; padding: 0.5rem 1rem; }
+      .quiz-options { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      .quiz-section-header h2 { font-size: 2rem; }
+      .quiz-step .step-question { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="/" class="logo-text">Vesping Around</a>
+  <a href="#plan" class="nav-cta">Book Free Consult</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div id="destination-badge" class="destination-badge"></div>
+  <h1 id="hero-headline">Guided Vespa Vacations Through Italy's Most Beautiful Regions</h1>
+  <p id="hero-subheadline">All-inclusive, fully guided multi-day tours — Mauro helps you find your perfect Italian adventure.</p>
+  <a href="#plan" class="hero-cta">Book Your Free Consultation</a>
+  <div class="trust-bar">
+    <span class="trust-item">✅ Fully All-Inclusive</span>
+    <span class="trust-item">✅ Expert Local Guides</span>
+    <span class="trust-item">✅ Small Groups Only</span>
+    <span class="trust-item">✅ Free Consult with Mauro</span>
+  </div>
+</section>
+
+<!-- ── DESTINATIONS ── -->
+<div class="section">
+  <h2 class="section-title">Choose Your Italian Adventure</h2>
+  <p class="section-subtitle">Three iconic regions. One unforgettable experience. Mauro helps you pick the perfect fit.</p>
+  <div class="destinations-grid">
+
+    <div class="destination-card" id="card-tuscany">
+      <div class="card-image tuscany-img"></div>
+      <div class="card-body">
+        <h3>Tuscany</h3>
+        <p>Wind through Chianti, medieval hilltowns, and cypress-lined roads on a classic scooter.</p>
+        <div class="card-tags">
+          <span class="tag">Chianti Valley</span>
+          <span class="tag">Hilltowns</span>
+          <span class="tag">May &amp; October</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="destination-card" id="card-sicily">
+      <div class="card-image sicily-img"></div>
+      <div class="card-body">
+        <h3>Sicily</h3>
+        <p>Explore ancient temples, coastal villages, and the soul of the Mediterranean by scooter.</p>
+        <div class="card-tags">
+          <span class="tag">Coastal Roads</span>
+          <span class="tag">Greek Temples</span>
+          <span class="tag">June &amp; October</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="destination-card" id="card-puglia">
+      <div class="card-image puglia-img"></div>
+      <div class="card-body">
+        <h3>Puglia</h3>
+        <p>Discover whitewashed trulli villages and the hidden heel of Italy — off the beaten path.</p>
+        <div class="card-tags">
+          <span class="tag">Trulli Villages</span>
+          <span class="tag">Valle d'Itria</span>
+          <span class="tag">September</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── WHAT'S INCLUDED ── -->
+<div class="included-section">
+  <div class="included-inner">
+    <h2 class="section-title">Everything Included. Nothing to Plan.</h2>
+    <p class="section-subtitle">This is a fully curated, all-inclusive vacation — not a rental or a day tour.</p>
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="included-icon">🛵</div>
+        <h4>Classic Scooter</h4>
+        <p>Fully serviced vintage scooter with safety briefing and support vehicle throughout</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🏨</div>
+        <h4>Accommodations</h4>
+        <p>Hand-selected boutique hotels and agriturismos along the route</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🍽️</div>
+        <h4>Meals &amp; Tastings</h4>
+        <p>Regional dining, local markets, and authentic trattorias — all arranged</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🗺️</div>
+        <h4>Expert Guide</h4>
+        <p>Local expert guide for the entire journey — never a tour bus in sight</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">📋</div>
+        <h4>Full Itinerary</h4>
+        <p>Every day planned, every detail handled — you just ride and enjoy</p>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🤝</div>
+        <h4>Mauro's Expertise</h4>
+        <p>Personal consultation to match you to the perfect trip and destination</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── QUIZ + FORM ── -->
+<section class="quiz-section" id="plan">
+  <div class="quiz-inner">
+
+    <div class="quiz-section-header">
+      <h2>Plan Your Perfect Trip with Mauro</h2>
+      <p id="form-subheadline">Answer a few quick questions — Mauro will reach out with a personalized recommendation.</p>
+    </div>
+
+    <!-- Progress indicators -->
+    <div class="quiz-progress" id="quiz-progress" aria-hidden="true"></div>
+
+    <!-- Quiz steps -->
+    <div id="quiz-container">
+
+      <!-- Step 1: Destination -->
+      <div class="quiz-step" id="step-1" data-key="destination">
+        <p class="step-question">Which region calls to you?</p>
+        <p class="step-hint">Pick your dream destination — or let Mauro help you choose.</p>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="tuscany">
+            <span class="opt-icon">🌿</span>
+            <span class="opt-label">Tuscany</span>
+            <span class="opt-sub">Chianti &amp; hilltowns</span>
+          </div>
+          <div class="quiz-option" data-value="sicily">
+            <span class="opt-icon">🏛️</span>
+            <span class="opt-label">Sicily</span>
+            <span class="opt-sub">Coast &amp; temples</span>
+          </div>
+          <div class="quiz-option" data-value="puglia">
+            <span class="opt-icon">🫒</span>
+            <span class="opt-label">Puglia</span>
+            <span class="opt-sub">Trulli &amp; olive groves</span>
+          </div>
+          <div class="quiz-option" data-value="not_sure">
+            <span class="opt-icon">🤔</span>
+            <span class="opt-label">Help Me Decide</span>
+            <span class="opt-sub">Mauro will advise</span>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <span></span>
+          <button class="btn-next" onclick="nextStep()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Travel timing -->
+      <div class="quiz-step" id="step-2" data-key="timing">
+        <p class="step-question">When are you hoping to travel?</p>
+        <p class="step-hint">Our tours run spring and autumn for the best routes and weather.</p>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="spring_2026">
+            <span class="opt-icon">🌸</span>
+            <span class="opt-label">Spring 2026</span>
+            <span class="opt-sub">April – June</span>
+          </div>
+          <div class="quiz-option" data-value="fall_2026">
+            <span class="opt-icon">🍂</span>
+            <span class="opt-label">Fall 2026</span>
+            <span class="opt-sub">September – November</span>
+          </div>
+          <div class="quiz-option" data-value="spring_2027">
+            <span class="opt-icon">🌼</span>
+            <span class="opt-label">Spring 2027</span>
+            <span class="opt-sub">Planning ahead</span>
+          </div>
+          <div class="quiz-option" data-value="flexible">
+            <span class="opt-icon">📅</span>
+            <span class="opt-label">I'm Flexible</span>
+            <span class="opt-sub">Open to options</span>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Group size -->
+      <div class="quiz-step" id="step-3" data-key="group_size">
+        <p class="step-question">Who's riding with you?</p>
+        <p class="step-hint">All our tours are small-group — we just want to plan accordingly.</p>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="solo">
+            <span class="opt-icon">🧍</span>
+            <span class="opt-label">Just Me</span>
+            <span class="opt-sub">Solo adventure</span>
+          </div>
+          <div class="quiz-option" data-value="couple">
+            <span class="opt-icon">👫</span>
+            <span class="opt-label">Couple</span>
+            <span class="opt-sub">Romantic escape</span>
+          </div>
+          <div class="quiz-option" data-value="small_group">
+            <span class="opt-icon">👨‍👩‍👧</span>
+            <span class="opt-label">Small Group</span>
+            <span class="opt-sub">3–4 people</span>
+          </div>
+          <div class="quiz-option" data-value="larger_group">
+            <span class="opt-icon">👥</span>
+            <span class="opt-label">Larger Group</span>
+            <span class="opt-sub">5+ people</span>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Riding experience -->
+      <div class="quiz-step" id="step-4" data-key="experience">
+        <p class="step-question">What's your riding experience?</p>
+        <p class="step-hint">No worries either way — Mauro caters to all levels with full support.</p>
+        <div class="quiz-options" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="quiz-option" data-value="never_ridden">
+            <span class="opt-icon">🔰</span>
+            <span class="opt-label">Never Ridden</span>
+            <span class="opt-sub">Complete beginner</span>
+          </div>
+          <div class="quiz-option" data-value="some_experience">
+            <span class="opt-icon">🛵</span>
+            <span class="opt-label">Some Experience</span>
+            <span class="opt-sub">Ridden before</span>
+          </div>
+          <div class="quiz-option" data-value="experienced">
+            <span class="opt-icon">🏍️</span>
+            <span class="opt-label">Experienced</span>
+            <span class="opt-sub">Confident rider</span>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Trip priorities -->
+      <div class="quiz-step" id="step-5" data-key="priorities">
+        <p class="step-question">What matters most to you?</p>
+        <p class="step-hint">This helps Mauro personalize your route and itinerary.</p>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="scenic_routes">
+            <span class="opt-icon">🏞️</span>
+            <span class="opt-label">Scenic Routes</span>
+            <span class="opt-sub">Landscapes &amp; vistas</span>
+          </div>
+          <div class="quiz-option" data-value="food_wine">
+            <span class="opt-icon">🍷</span>
+            <span class="opt-label">Food &amp; Wine</span>
+            <span class="opt-sub">Tastings &amp; markets</span>
+          </div>
+          <div class="quiz-option" data-value="history_culture">
+            <span class="opt-icon">🏛️</span>
+            <span class="opt-label">History &amp; Culture</span>
+            <span class="opt-sub">Sites &amp; stories</span>
+          </div>
+          <div class="quiz-option" data-value="all_of_above">
+            <span class="opt-icon">✨</span>
+            <span class="opt-label">All of the Above</span>
+            <span class="opt-sub">The full experience</span>
+          </div>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- Step 6: Contact form -->
+      <div class="quiz-step contact-step" id="step-6" data-key="contact">
+        <p class="step-question">Almost there!</p>
+        <p class="step-hint" id="contact-hint">Share your details and Mauro will craft your personalized Italy plan.</p>
+        <form id="lead-form" onsubmit="submitForm(event)" style="margin-top:1.5rem;" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first_name">First Name *</label>
+              <input type="text" id="first_name" name="first_name" placeholder="Maria" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name *</label>
+              <input type="text" id="last_name" name="last_name" placeholder="Rossi" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="maria@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="message">Anything else Mauro should know?</label>
+            <textarea id="message" name="message" placeholder="Tell us your dream trip, any questions, or special requests…"></textarea>
+          </div>
+          <div class="quiz-nav" style="margin-top:0.25rem;">
+            <button type="button" class="btn-back" onclick="prevStep()">← Back</button>
+            <button type="submit" class="btn-submit" id="submit-btn">Send My Details to Mauro →</button>
+          </div>
+          <p class="form-privacy">🔒 We'll never spam you or share your information.</p>
+        </form>
+      </div>
+
+    </div><!-- /quiz-container -->
+
+    <!-- Success message shown after submission -->
+    <div class="quiz-success" id="quiz-success">
+      <div class="success-icon">🛵</div>
+      <h2>You're on your way to Italy!</h2>
+      <p>Mauro has received your details and will be in touch within 24 hours to start planning your perfect Vespa adventure.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Vesping Around · All-Inclusive Guided Vespa Tours in Italy</p>
+  <p style="margin-top:0.5rem;">
+    Vespa® is a registered trademark of Piaggio &amp; C. SpA. Vesping Around is not affiliated with Piaggio.
+  </p>
+</footer>
+
+<script>
+  // ─────────────────────────────────────────────────────
+  //  CONFIGURATION
+  //  Replace with your actual GoHighLevel webhook URL:
+  // ─────────────────────────────────────────────────────
+  const GHL_WEBHOOK_URL = "YOUR_GHL_WEBHOOK_URL_HERE";
+
+  // ─────────────────────────────────────────────────────
+  //  DESTINATION PERSONALIZATION
+  // ─────────────────────────────────────────────────────
+  const DESTINATIONS = {
+    tuscany: {
+      badge:          "🇮🇹 Tuscany",
+      headline:       "Ride Through Tuscany on a Classic Vespa",
+      subheadline:    "All-inclusive, fully guided multi-day tours through Chianti, medieval hilltowns & the Tuscan countryside.",
+      contactHint:    "Tell us about yourself — Mauro will reach out to plan your perfect Tuscany adventure.",
+      highlightCard:  "card-tuscany"
+    },
+    sicily: {
+      badge:          "🇮🇹 Sicily",
+      headline:       "Explore Sicily on a Classic Vespa",
+      subheadline:    "All-inclusive, fully guided multi-day tours through coastal villages, ancient temples & Sicilian culture.",
+      contactHint:    "Tell us about yourself — Mauro will reach out to plan your perfect Sicily adventure.",
+      highlightCard:  "card-sicily"
+    },
+    puglia: {
+      badge:          "🇮🇹 Puglia",
+      headline:       "Discover Hidden Puglia by Vespa",
+      subheadline:    "All-inclusive, fully guided multi-day tours through whitewashed trulli villages & the hidden heel of Italy.",
+      contactHint:    "Tell us about yourself — Mauro will reach out to plan your perfect Puglia adventure.",
+      highlightCard:  "card-puglia"
+    }
+  };
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlDest   = urlParams.get("destination")?.toLowerCase();
+  const destData  = DESTINATIONS[urlDest];
+
+  if (destData) {
+    document.getElementById("hero-headline").textContent    = destData.headline;
+    document.getElementById("hero-subheadline").textContent = destData.subheadline;
+    document.getElementById("contact-hint").textContent     = destData.contactHint;
+
+    const badge = document.getElementById("destination-badge");
+    badge.textContent    = destData.badge;
+    badge.style.display  = "inline-block";
+
+    const card = document.getElementById(destData.highlightCard);
+    if (card) card.classList.add("highlighted");
+  }
+
+  // ─────────────────────────────────────────────────────
+  //  QUIZ ENGINE
+  // ─────────────────────────────────────────────────────
+  const steps   = Array.from(document.querySelectorAll(".quiz-step"));
+  const answers = {};
+  let   current = 0; // 0-indexed
+
+  // If destination already set via URL param, pre-fill and skip to step 2
+  if (urlDest && DESTINATIONS[urlDest]) {
+    answers.destination = urlDest;
+    current = 1; // start at step 2 (index 1)
+  }
+
+  // Build progress dots
+  const progressEl = document.getElementById("quiz-progress");
+  steps.forEach((_, i) => {
+    if (i > 0) {
+      const line = document.createElement("div");
+      line.className = "progress-line";
+      progressEl.appendChild(line);
+    }
+    const dot = document.createElement("div");
+    dot.className = "progress-dot";
+    dot.id = "pdot-" + i;
+    progressEl.appendChild(dot);
+  });
+
+  function updateProgress() {
+    steps.forEach((_, i) => {
+      const dot = document.getElementById("pdot-" + i);
+      if (i < current)       dot.className = "progress-dot completed";
+      else if (i === current) dot.className = "progress-dot active";
+      else                    dot.className = "progress-dot";
+    });
+  }
+
+  function showStep(idx) {
+    steps.forEach((s, i) => s.classList.toggle("active", i === idx));
+    updateProgress();
+    current = idx;
+
+    // Restore any previously selected answer for this step
+    const key = steps[idx].dataset.key;
+    if (answers[key]) {
+      steps[idx].querySelectorAll(".quiz-option").forEach(opt => {
+        opt.classList.toggle("selected", opt.dataset.value === answers[key]);
+      });
+    }
+
+    // Pre-select destination step if coming from URL param
+    if (key === "destination" && answers.destination) {
+      steps[idx].querySelectorAll(".quiz-option").forEach(opt => {
+        opt.classList.toggle("selected", opt.dataset.value === answers.destination);
+      });
+    }
+  }
+
+  function nextStep() {
+    const stepEl = steps[current];
+    const key    = stepEl.dataset.key;
+
+    if (key !== "contact") {
+      const selected = stepEl.querySelector(".quiz-option.selected");
+      if (!selected) {
+        const opts = stepEl.querySelector(".quiz-options");
+        opts.style.animation = "none";
+        opts.offsetWidth; // reflow to restart animation
+        opts.style.animation = "shake 0.3s ease";
+        return;
+      }
+      answers[key] = selected.dataset.value;
+    }
+
+    if (current < steps.length - 1) {
+      showStep(current + 1);
+      document.getElementById("plan").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function prevStep() {
+    if (current > 0) {
+      showStep(current - 1);
+      document.getElementById("plan").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  // Option click handler
+  document.querySelectorAll(".quiz-option").forEach(opt => {
+    opt.addEventListener("click", function () {
+      this.closest(".quiz-options").querySelectorAll(".quiz-option")
+          .forEach(o => o.classList.remove("selected"));
+      this.classList.add("selected");
+    });
+  });
+
+  // Init
+  showStep(current);
+
+  // ─────────────────────────────────────────────────────
+  //  FORM SUBMISSION → GHL WEBHOOK
+  // ─────────────────────────────────────────────────────
+  async function submitForm(e) {
+    e.preventDefault();
+
+    const firstName = document.getElementById("first_name").value.trim();
+    const lastName  = document.getElementById("last_name").value.trim();
+    const email     = document.getElementById("email").value.trim();
+
+    if (!firstName || !lastName || !email) {
+      document.getElementById("first_name").reportValidity();
+      return;
+    }
+
+    const btn = document.getElementById("submit-btn");
+    btn.disabled    = true;
+    btn.textContent = "Sending…";
+
+    const payload = {
+      // Contact fields (standard GHL field names)
+      firstName:   firstName,
+      lastName:    lastName,
+      email:       email,
+      phone:       document.getElementById("phone").value.trim(),
+      message:     document.getElementById("message").value.trim(),
+
+      // Quiz answers
+      destination: answers.destination || urlDest || "general",
+      timing:      answers.timing      || "",
+      group_size:  answers.group_size  || "",
+      experience:  answers.experience  || "",
+      priorities:  answers.priorities  || "",
+
+      // Tracking
+      source_url:  window.location.href,
+      source_page: "vesping-around-landing"
+    };
+
+    try {
+      if (GHL_WEBHOOK_URL === "YOUR_GHL_WEBHOOK_URL_HERE") {
+        // Demo mode — log and show success without hitting a real endpoint
+        console.log("[Demo] Submission payload:", payload);
+        await new Promise(r => setTimeout(r, 800));
+      } else {
+        const res = await fetch(GHL_WEBHOOK_URL, {
+          method:  "POST",
+          headers: { "Content-Type": "application/json" },
+          body:    JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("Server responded " + res.status);
+      }
+
+      // Show success
+      document.getElementById("quiz-container").style.display = "none";
+      document.getElementById("quiz-progress").style.display  = "none";
+      document.getElementById("quiz-success").classList.add("active");
+      document.getElementById("plan").scrollIntoView({ behavior: "smooth", block: "start" });
+
+    } catch (err) {
+      console.error("Submission error:", err);
+      btn.disabled    = false;
+      btn.textContent = "Send My Details to Mauro →";
+      alert("Something went wrong — please try again or email us directly.");
+    }
+  }
+</script>
+
+</body>
+</html>
