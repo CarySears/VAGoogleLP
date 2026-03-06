@@ -317,6 +317,8 @@
       display: block;
     }
 
+    .included-thumb.top-focus { object-position: top center; }
+
     .included-item h4 {
       font-family: "Cormorant Garamond", serif;
       font-size: 1.3rem;
@@ -356,6 +358,11 @@
       margin: 0 auto;
     }
 
+    .testimonial-card {
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
     .media-card h3 {
       font-family: "Cormorant Garamond", serif;
       font-size: 1.7rem;
@@ -387,6 +394,13 @@
       object-fit: cover;
       border-radius: 8px;
       background: #000;
+    }
+
+    .media-video-portrait {
+      width: min(100%, 360px);
+      aspect-ratio: 9 / 16;
+      margin: 0 auto;
+      display: block;
     }
 
     .bio-section {
@@ -761,14 +775,14 @@
       >
       <span>Vesping Around</span>
     </a>
-    <a href="#quiz" class="nav-cta">Get Free Trip Plan</a>
+    <a href="#quiz" class="nav-cta dynamic-cta" data-cta-control="Get Free Personalized Trip Plan" data-cta-route="Get My Free Personalized Italy Route Plan">Get Free Personalized Trip Plan</a>
   </nav>
 
   <header class="hero" id="top">
     <div class="destination-badge" id="destination-badge"></div>
     <h1 id="hero-headline">Guided Vespa Vacations Through Italy's Most Beautiful Regions</h1>
     <p id="hero-subheadline">All-inclusive, fully guided multi-day tours through Italy's most beautiful regions.</p>
-    <a class="hero-cta dynamic-cta" href="#quiz" id="hero-cta" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
+    <a class="hero-cta dynamic-cta" href="#quiz" id="hero-cta" data-cta-control="Get Free Personalized Trip Plan" data-cta-route="Get My Free Personalized Italy Route Plan">Get Free Personalized Trip Plan</a>
     <p class="hero-proof">Small groups | curated routes | free planning call</p>
     <div class="trust-bar">
       <div class="trust-item">Fully All-Inclusive</div>
@@ -790,7 +804,7 @@
           controls
           playsinline
           preload="none"
-          poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e7744a929a832ecc08772.jpeg"
+          poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6711b183601ea92f6fd9b352.jpeg"
         >
           <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/mp4">
           <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/quicktime">
@@ -807,7 +821,7 @@
         </a>
       </article>
       <div class="section-cta-row">
-        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Take 2-Min Quiz for Mini-Guide" data-cta-regional="Take 2-Min Quiz for Itinerary">Take 2-Min Quiz for Mini-Guide</a>
+        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-control="Get Free Personalized Trip Plan" data-cta-route="Get My Free Personalized Italy Route Plan">Get Free Personalized Trip Plan</a>
       </div>
     </div>
   </section>
@@ -842,7 +856,7 @@
       </article>
     </div>
     <div class="section-cta-row">
-      <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
+      <a class="hero-cta dynamic-cta" href="#quiz" data-cta-control="Get Free Personalized Trip Plan" data-cta-route="Get My Free Personalized Italy Route Plan">Get Free Personalized Trip Plan</a>
     </div>
   </section>
 
@@ -932,9 +946,9 @@
     <div class="media-wrap">
       <h2 class="section-title">Traveler Testimonials</h2>
       <p class="section-subtitle">Hear directly from travelers who explored Italy with Mauro and Vesping Around.</p>
-      <article class="media-card media-card-wide">
+      <article class="media-card testimonial-card">
         <video
-          class="media-video"
+          class="media-video media-video-portrait"
           controls
           playsinline
           preload="metadata"
@@ -945,7 +959,7 @@
         </video>
       </article>
       <div class="section-cta-row">
-        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
+        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-control="Get Free Personalized Trip Plan" data-cta-route="Get My Free Personalized Italy Route Plan">Get Free Personalized Trip Plan</a>
       </div>
     </div>
   </section>
@@ -976,7 +990,7 @@
           <p>Every Vesping Around tour is all-inclusive, covering everything from vehicle rental and accommodations to meals and guided excursions, so you can relax and enjoy the ride. Oh, and you get the popular Vesping Around Travel Kit!</p>
         </article>
         <article class="included-item">
-          <img class="included-thumb" src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6df94eae91dc455199.jpeg" alt="Hands-on cultural and food experiences in Italy" loading="lazy">
+          <img class="included-thumb top-focus" src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6df94eae91dc455199.jpeg" alt="Hands-on cultural and food experiences in Italy" loading="lazy">
           <h4>Hands-On</h4>
           <p>Engage in hands-on food and cultural experiences like cooking classes, workshops, local museums, and more, allowing you to actively connect with local culture.</p>
         </article>
@@ -987,7 +1001,7 @@
         </article>
       </div>
       <div class="section-cta-row">
-        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
+        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-control="Get Free Personalized Trip Plan" data-cta-route="Get My Free Personalized Italy Route Plan">Get Free Personalized Trip Plan</a>
       </div>
     </div>
   </section>
@@ -1036,7 +1050,7 @@
         </div>
       </div>
       <div class="section-cta-row">
-        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
+        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-control="Get Free Personalized Trip Plan" data-cta-route="Get My Free Personalized Italy Route Plan">Get Free Personalized Trip Plan</a>
       </div>
     </div>
   </section>
@@ -1096,7 +1110,7 @@
   </div>
 
   <div class="mobile-sticky-cta">
-    <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
+    <a class="hero-cta dynamic-cta" href="#quiz" data-cta-control="Get Free Personalized Trip Plan" data-cta-route="Get My Free Personalized Italy Route Plan">Get Free Personalized Trip Plan</a>
   </div>
 
   <footer>
@@ -1326,7 +1340,6 @@
         const quizTitle = document.getElementById("quiz-title");
         const quizSubtitle = document.getElementById("quiz-subtitle");
         const cta = document.getElementById("hero-cta");
-        const isGeneral = destinationKey === "general";
         const useRouteCtaVariant = ctaVariant === "route";
 
         heroHeadline.textContent = content.headline;
@@ -1335,14 +1348,13 @@
         quizSubtitle.textContent = content.quizSubtitle;
         leadStepTitle.textContent = content.leadTitle;
         leadStepCopy.textContent = content.leadCopy;
-        cta.textContent = useRouteCtaVariant ? "Get My Italy Route Plan" : (isGeneral ? "Get Free Mini-Guide" : "Get Free Itinerary");
+        cta.textContent = useRouteCtaVariant ? "Get My Free Personalized Italy Route Plan" : "Get Free Personalized Trip Plan";
 
         document.querySelectorAll(".dynamic-cta").forEach((button) => {
-          const generalText = button.getAttribute("data-cta-general");
-          const regionalText = button.getAttribute("data-cta-regional");
-          if (!generalText || !regionalText) return;
-          const defaultText = isGeneral ? generalText : regionalText;
-          button.textContent = useRouteCtaVariant ? "Get My Italy Route Plan" : defaultText;
+          const controlText = button.getAttribute("data-cta-control");
+          const routeText = button.getAttribute("data-cta-route");
+          if (!controlText || !routeText) return;
+          button.textContent = useRouteCtaVariant ? routeText : controlText;
         });
 
         if (content.badge) {
