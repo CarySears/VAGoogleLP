@@ -202,13 +202,28 @@
       margin: 0 auto;
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    .section-cta-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    .gallery-carousel-wrap {
+      margin-top: 1rem;
+    }
+
+    .gallery-carousel {
+      display: flex;
       gap: 0.85rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.3rem;
+      scrollbar-width: thin;
     }
 
     .gallery-item {
+      flex: 0 0 min(78vw, 340px);
+      scroll-snap-align: start;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -217,14 +232,28 @@
 
     .gallery-item img {
       width: 100%;
-      height: 100%;
-      min-height: 180px;
+      height: min(54vw, 280px);
       object-fit: cover;
       display: block;
     }
 
-    .gallery-item:nth-child(3n) img { min-height: 240px; }
-    .gallery-item:nth-child(5n) img { min-height: 210px; }
+    .gallery-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .gallery-nav {
+      border: 0;
+      background: #fff;
+      border-radius: 6px;
+      padding: 0.55rem 0.8rem;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--dark);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
 
     .card-body { padding: 1.5rem; }
 
@@ -297,6 +326,11 @@
       border-radius: 10px;
       padding: 1rem;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    }
+
+    .media-card-wide {
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .media-card h3 {
@@ -694,7 +728,41 @@
     </div>
   </header>
 
-  <section class="section">
+  <section class="media-section" id="experience-film">
+    <div class="media-wrap">
+      <h2 class="section-title">See the Vesping Around Experience</h2>
+      <p class="section-subtitle">A quick visual preview of the atmosphere, scenery, and pace of your Italian adventure.</p>
+      <article class="media-card media-card-wide">
+        <h3>Experience Film</h3>
+        <p>A cinematic preview of the Vesping Around style, pace, and atmosphere.</p>
+        <video
+          class="media-video"
+          controls
+          playsinline
+          preload="none"
+          poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68375cf43786e52d0f54dcd2.jpeg"
+        >
+          <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/mp4">
+          <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/quicktime">
+          <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov">Watch experience film</a>
+        </video>
+        <p class="media-help">If your browser cannot play this file inline, open the full video directly.</p>
+        <a
+          class="btn btn-secondary btn-link media-link"
+          href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Full Experience Film
+        </a>
+      </article>
+      <div class="section-cta-row">
+        <a class="hero-cta" href="#quiz">Start the 2-Minute Quiz</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="adventure">
     <h2 class="section-title">Choose Your Italian Adventure</h2>
     <p class="section-subtitle">Three iconic regions. One unforgettable experience. Mauro helps you pick the perfect fit.</p>
     <div class="destinations-grid">
@@ -723,113 +791,8 @@
         </div>
       </article>
     </div>
-  </section>
-
-  <section class="gallery-section" id="photo-gallery">
-    <div class="gallery-inner">
-      <h2 class="section-title">Moments From The Road</h2>
-      <p class="section-subtitle">Real rides, real villages, real Italy. A quick visual gallery from Vesping Around experiences.</p>
-      <div class="gallery-grid">
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52580e6c6174054f09.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf5261cd2db4b9d1dd55.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf532d90197ea15bc665.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52cbc8a8bce485e491.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab175b719f5890c.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf528f8124170ab195cf.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf5361cd2d6c33d1ddc5.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52f2a4d3814a99e6c9.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6831fd54b7ad296c03e98b02.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6831fa26b6893f3ef7f3c376.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d5f4d69632f05b21a.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6df94eae91dc455199.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d83fcbc3b8a559466.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d11cf9d9c222325f2.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e77441df52ec30ec76169.webp" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="included-section">
-    <div class="included-inner">
-      <h2 class="section-title">Everything Included. Nothing to Plan.</h2>
-      <p class="section-subtitle">This is a fully curated, all-inclusive vacation, not a rental or a day tour.</p>
-      <div class="included-grid">
-        <article class="included-item"><h4>Classic Scooter</h4><p>Fully serviced vintage scooter with safety briefing and support vehicle throughout.</p></article>
-        <article class="included-item"><h4>Accommodations</h4><p>Hand-selected boutique hotels and agriturismos along the route.</p></article>
-        <article class="included-item"><h4>Meals and Tastings</h4><p>Regional dining, local markets, and authentic trattorias, all arranged.</p></article>
-        <article class="included-item"><h4>Expert Guide</h4><p>Local expert guide for the entire journey, never a tour bus in sight.</p></article>
-        <article class="included-item"><h4>Full Itinerary</h4><p>Every day planned, every detail handled, you just ride and enjoy.</p></article>
-        <article class="included-item"><h4>Mauro's Expertise</h4><p>Personal consultation to match you to the perfect trip and destination.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="media-section" id="videos">
-    <div class="media-wrap">
-      <h2 class="section-title">See the Vesping Around Experience</h2>
-      <p class="section-subtitle">A quick look at the rides, places, and real traveler moments you can expect.</p>
-      <div class="media-inner">
-        <article class="media-card">
-          <h3>Experience Film</h3>
-          <p>A cinematic preview of the Vesping Around style, pace, and atmosphere.</p>
-          <video
-            class="media-video"
-            controls
-            playsinline
-            preload="none"
-            poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68375cf43786e52d0f54dcd2.jpeg"
-          >
-            <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/mp4">
-            <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/quicktime">
-            <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov">Watch experience film</a>
-          </video>
-          <p class="media-help">If your browser cannot play this file inline, open the full video directly.</p>
-          <a
-            class="btn btn-secondary btn-link media-link"
-            href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Full Experience Film
-          </a>
-        </article>
-        <article class="media-card">
-          <h3>Traveler Testimonials</h3>
-          <p>Hear directly from travelers who experienced Vesping Around with Mauro.</p>
-          <video class="media-video" controls playsinline preload="metadata">
-            <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68ffd3c4ab226db3c51ecb66.mp4" type="video/mp4">
-            <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68ffd3c4ab226db3c51ecb66.mp4">Watch testimonial video</a>
-          </video>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="bio-section" id="mauro-bio">
-    <div class="bio-inner">
-      <div class="bio-image-wrap">
-        <img
-          class="bio-image"
-          src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/673e466ef70e31b231c7cbfb.jpeg"
-          alt="Mauro Clerici, founder and tour lead of Vesping Around"
-          loading="lazy"
-        >
-      </div>
-      <div class="bio-copy">
-        <h2 class="bio-name">Mauro Clerici</h2>
-        <p class="bio-role">Founder and Tour Lead</p>
-        <p>
-          I'm Mauro Clerici, founder of Vesping Around - a boutique travel company that crafts intimate experiences across Italy.
-          My background blends years in wellness coaching, hospitality, and cultural travel, all centered on connection and authentic experiences.
-          I design small-group itineraries that highlight Italy's hidden gems - from vineyard dinners and artisan workshops to scenic countryside rides - offering travelers a deeper, more personal way to explore.
-          At the core of everything I do is a passion for slow travel, genuine human connection, and showcasing the Italy that locals know and love.
-        </p>
-        <p>
-          I know Italy beyond the guidebooks - the backroads that wind through vineyards, the family trattorie where time slows down, and the small towns where real life happens.
-          From Tuscany to Puglia and Sicily, I don't just show places; I share the stories, people, and moments that make each region come alive.
-          My goal is to help travelers experience Italy the way Italians do - with authenticity, flavor, and connection.
-        </p>
-      </div>
+    <div class="section-cta-row">
+      <a class="hero-cta" href="#quiz">Find My Best Trip Match</a>
     </div>
   </section>
 
@@ -895,7 +858,7 @@
 
           <div class="quiz-step" data-step="4" id="lead-step">
             <p class="step-meta" id="step-4-meta">Step 4 of 4</p>
-            <h3 id="lead-step-title">Where should we send your detailed itinerary?</h3>
+            <h3 id="lead-step-title">Get your detailed itinerary by email</h3>
             <p class="lead-step-copy" id="lead-step-copy">
               Share your information below and we will send your detailed itinerary, then invite you to book a free consultation with Mauro.
             </p>
@@ -911,6 +874,117 @@
           </div>
         </form>
         <p class="fallback-message" id="lead-submit-message"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="media-section" id="testimonials">
+    <div class="media-wrap">
+      <h2 class="section-title">Traveler Testimonials</h2>
+      <p class="section-subtitle">Hear directly from travelers who explored Italy with Mauro and Vesping Around.</p>
+      <article class="media-card media-card-wide">
+        <video class="media-video" controls playsinline preload="metadata">
+          <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68ffd3c4ab226db3c51ecb66.mp4" type="video/mp4">
+          <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68ffd3c4ab226db3c51ecb66.mp4">Watch testimonial video</a>
+        </video>
+      </article>
+      <div class="section-cta-row">
+        <a class="hero-cta" href="#quiz">Take the Quiz &amp; Get My Plan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="included-section">
+    <div class="included-inner">
+      <h2 class="section-title">Everything Included. Nothing to Plan.</h2>
+      <p class="section-subtitle">This is a fully curated, all-inclusive vacation, not a rental or a day tour.</p>
+      <div class="included-grid">
+        <article class="included-item"><h4>Classic Scooter</h4><p>Fully serviced vintage scooter with safety briefing and support vehicle throughout.</p></article>
+        <article class="included-item"><h4>Accommodations</h4><p>Hand-selected boutique hotels and agriturismos along the route.</p></article>
+        <article class="included-item"><h4>Meals and Tastings</h4><p>Regional dining, local markets, and authentic trattorias, all arranged.</p></article>
+        <article class="included-item"><h4>Expert Guide</h4><p>Local expert guide for the entire journey, never a tour bus in sight.</p></article>
+        <article class="included-item"><h4>Full Itinerary</h4><p>Every day planned, every detail handled, you just ride and enjoy.</p></article>
+        <article class="included-item"><h4>Mauro's Expertise</h4><p>Personal consultation to match you to the perfect trip and destination.</p></article>
+      </div>
+      <div class="section-cta-row">
+        <a class="hero-cta" href="#quiz">Get My Personalized Route</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-section" id="photo-gallery">
+    <div class="gallery-inner">
+      <h2 class="section-title">Moments From The Road</h2>
+      <p class="section-subtitle">Swipe through the full Vesping Around gallery.</p>
+      <div class="gallery-carousel-wrap">
+        <div class="gallery-carousel" id="road-carousel">
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab1750449f5890b.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf538f8124bc31b195dd.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab17556b9f5890d.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52580e6c6174054f09.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf5261cd2db4b9d1dd55.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf532d90197ea15bc665.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52cbc8a8bce485e491.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab175b719f5890c.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf528f8124170ab195cf.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf5361cd2d6c33d1ddc5.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52f2a4d3814a99e6c9.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68375cf43786e52d0f54dcd2.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6831fd54b7ad296c03e98b02.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6831fa26b6893f3ef7f3c376.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d5f4d69632f05b21a.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6df94eae91dc455199.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d83fcbc3b8a559466.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d11cf9d9c222325f2.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e774400da0c8204082118.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e77441df52ec30ec76169.webp" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e7744a929a832ecc08772.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e774412775b2e0edf5f90.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6726859a4ff0637be190a73b.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67267aba1afd53414d1eb4b0.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6726666f6b18c6592680ccb3.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6717cb60a2dcf84b9bb70698.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6713b493529e43085aa6a670.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6713b278529e4325afa6a4e6.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6713af6080829f1b6a87657a.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6711b46fe1ff773f8200506b.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+          <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6711b183601ea92f6fd9b352.jpeg" alt="Vesping Around Italy travel photo" loading="lazy"></figure>
+        </div>
+        <div class="gallery-controls">
+          <button type="button" class="gallery-nav" id="gallery-prev">Prev</button>
+          <button type="button" class="gallery-nav" id="gallery-next">Next</button>
+        </div>
+      </div>
+      <div class="section-cta-row">
+        <a class="hero-cta" href="#quiz">Start My Free Trip Plan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio-section" id="mauro-bio">
+    <div class="bio-inner">
+      <div class="bio-image-wrap">
+        <img
+          class="bio-image"
+          src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/673e466ef70e31b231c7cbfb.jpeg"
+          alt="Mauro Clerici, founder and tour lead of Vesping Around"
+          loading="lazy"
+        >
+      </div>
+      <div class="bio-copy">
+        <h2 class="bio-name">Mauro Clerici</h2>
+        <p class="bio-role">Founder and Tour Lead</p>
+        <p>
+          I'm Mauro Clerici, founder of Vesping Around - a boutique travel company that crafts intimate experiences across Italy.
+          My background blends years in wellness coaching, hospitality, and cultural travel, all centered on connection and authentic experiences.
+          I design small-group itineraries that highlight Italy's hidden gems - from vineyard dinners and artisan workshops to scenic countryside rides - offering travelers a deeper, more personal way to explore.
+          At the core of everything I do is a passion for slow travel, genuine human connection, and showcasing the Italy that locals know and love.
+        </p>
+        <p>
+          I know Italy beyond the guidebooks - the backroads that wind through vineyards, the family trattorie where time slows down, and the small towns where real life happens.
+          From Tuscany to Puglia and Sicily, I don't just show places; I share the stories, people, and moments that make each region come alive.
+          My goal is to help travelers experience Italy the way Italians do - with authenticity, flavor, and connection.
+        </p>
       </div>
     </div>
   </section>
@@ -974,8 +1048,8 @@
           subheadline: "All-inclusive, fully guided multi-day tours. Mauro helps you find your perfect Italian adventure.",
           quizTitle: "Ready to Experience Italy Like Never Before?",
           quizSubtitle: "Please answer a few quick questions so we can match you with the perfect curated vacation.",
-          leadTitle: "Where should we send your free mini-guide?",
-          leadCopy: "Share your information below and we'll send Vesping Around's free mini-guide: 3 Routes & 3 Meals to Taste the Real Italy. Then you can book a free, no-stress consultation with Mauro."
+          leadTitle: "Get Vesping Around's free mini-guide by email",
+          leadCopy: "Enter your details and we'll email you the free mini-guide: 3 Routes & 3 Meals to Taste the Real Italy. Then you can book a free, no-pressure planning consultation with Mauro."
         },
         tuscany: {
           badge: "Tuscany",
@@ -983,8 +1057,8 @@
           subheadline: "All-inclusive, fully guided multi-day tours through Chianti, medieval hilltowns, and the Tuscan countryside.",
           quizTitle: "Ready to Experience Tuscany Like Never Before?",
           quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Tuscany vacation.",
-          leadTitle: "Where should we send your detailed itinerary?",
-          leadCopy: "Share your information below and we'll send a detailed Tuscany itinerary. Then you can book a free, no-stress consultation with Mauro."
+          leadTitle: "Get your detailed itinerary by email",
+          leadCopy: "Enter your details and we'll email your detailed Tuscany itinerary. Then you can book a free, no-pressure planning consultation with Mauro."
         },
         sicily: {
           badge: "Sicily",
@@ -992,8 +1066,8 @@
           subheadline: "All-inclusive, fully guided multi-day tours through coastal villages, ancient temples, and Sicilian culture.",
           quizTitle: "Ready to Experience Sicily Like Never Before?",
           quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Sicily vacation.",
-          leadTitle: "Where should we send your detailed itinerary?",
-          leadCopy: "Share your information below and we'll send a detailed Sicily itinerary. Then you can book a free, no-stress consultation with Mauro."
+          leadTitle: "Get your detailed itinerary by email",
+          leadCopy: "Enter your details and we'll email your detailed Sicily itinerary. Then you can book a free, no-pressure planning consultation with Mauro."
         },
         puglia: {
           badge: "Puglia",
@@ -1001,8 +1075,8 @@
           subheadline: "All-inclusive, fully guided multi-day tours through whitewashed trulli villages and the hidden heel of Italy.",
           quizTitle: "Ready to Experience Puglia Like Never Before?",
           quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Puglia vacation.",
-          leadTitle: "Where should we send your detailed itinerary?",
-          leadCopy: "Share your information below and we'll send a detailed Puglia itinerary. Then you can book a free, no-stress consultation with Mauro."
+          leadTitle: "Get your detailed itinerary by email",
+          leadCopy: "Enter your details and we'll email your detailed Puglia itinerary. Then you can book a free, no-pressure planning consultation with Mauro."
         }
       };
 
@@ -1069,6 +1143,9 @@
       const closeCalendarModalBtn = document.getElementById("close-calendar-modal");
       const calendarModalDoneBtn = document.getElementById("calendar-modal-done");
       const calendarBookLink = document.getElementById("calendar-book-link");
+      const galleryCarousel = document.getElementById("road-carousel");
+      const galleryPrevBtn = document.getElementById("gallery-prev");
+      const galleryNextBtn = document.getElementById("gallery-next");
       const debugPanel = document.getElementById("debug-panel");
 
       let currentStep = 0;
@@ -1301,6 +1378,20 @@
       calendarModal.addEventListener("click", function (event) {
         if (event.target === calendarModal) closeCalendarModal();
       });
+
+      if (galleryCarousel && galleryPrevBtn && galleryNextBtn) {
+        const scrollAmount = function () {
+          return Math.min(galleryCarousel.clientWidth * 0.9, 380);
+        };
+
+        galleryPrevBtn.addEventListener("click", function () {
+          galleryCarousel.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+        });
+
+        galleryNextBtn.addEventListener("click", function () {
+          galleryCarousel.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+        });
+      }
 
       applyPersonalization(activeDestination);
       configureQuizByTraffic();
