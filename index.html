@@ -360,9 +360,10 @@
 
     .media-video {
       width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
       border-radius: 8px;
       background: #000;
-      max-height: 460px;
     }
 
     .bio-section {
@@ -712,19 +713,19 @@
       >
       <span>Vesping Around</span>
     </a>
-    <a href="#quiz" class="nav-cta">Book Free Consult</a>
+    <a href="#quiz" class="nav-cta">Get Free Trip Plan</a>
   </nav>
 
   <header class="hero" id="top">
     <div class="destination-badge" id="destination-badge"></div>
     <h1 id="hero-headline">Guided Vespa Vacations Through Italy's Most Beautiful Regions</h1>
-    <p id="hero-subheadline">All-inclusive, fully guided multi-day tours. Mauro helps you find your perfect Italian adventure.</p>
-    <a class="hero-cta" href="#quiz" id="hero-cta">Book Your Free Consultation</a>
+    <p id="hero-subheadline">All-inclusive, fully guided multi-day tours through Italy's most beautiful regions.</p>
+    <a class="hero-cta dynamic-cta" href="#quiz" id="hero-cta" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
     <div class="trust-bar">
       <div class="trust-item">Fully All-Inclusive</div>
       <div class="trust-item">Expert Local Guides</div>
       <div class="trust-item">Small Groups Only</div>
-      <div class="trust-item">Free Consult with Mauro</div>
+      <div class="trust-item">Personalized Route Matching</div>
     </div>
   </header>
 
@@ -740,7 +741,7 @@
           controls
           playsinline
           preload="none"
-          poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68375cf43786e52d0f54dcd2.jpeg"
+          poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e7744a929a832ecc08772.jpeg"
         >
           <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/mp4">
           <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/quicktime">
@@ -757,7 +758,7 @@
         </a>
       </article>
       <div class="section-cta-row">
-        <a class="hero-cta" href="#quiz">Start the 2-Minute Quiz</a>
+        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Take 2-Min Quiz for Mini-Guide" data-cta-regional="Take 2-Min Quiz for Itinerary">Take 2-Min Quiz for Mini-Guide</a>
       </div>
     </div>
   </section>
@@ -792,7 +793,7 @@
       </article>
     </div>
     <div class="section-cta-row">
-      <a class="hero-cta" href="#quiz">Find My Best Trip Match</a>
+      <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
     </div>
   </section>
 
@@ -883,13 +884,19 @@
       <h2 class="section-title">Traveler Testimonials</h2>
       <p class="section-subtitle">Hear directly from travelers who explored Italy with Mauro and Vesping Around.</p>
       <article class="media-card media-card-wide">
-        <video class="media-video" controls playsinline preload="metadata">
+        <video
+          class="media-video"
+          controls
+          playsinline
+          preload="metadata"
+          poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab1750449f5890b.jpeg"
+        >
           <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68ffd3c4ab226db3c51ecb66.mp4" type="video/mp4">
           <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68ffd3c4ab226db3c51ecb66.mp4">Watch testimonial video</a>
         </video>
       </article>
       <div class="section-cta-row">
-        <a class="hero-cta" href="#quiz">Take the Quiz &amp; Get My Plan</a>
+        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
       </div>
     </div>
   </section>
@@ -907,7 +914,7 @@
         <article class="included-item"><h4>Mauro's Expertise</h4><p>Personal consultation to match you to the perfect trip and destination.</p></article>
       </div>
       <div class="section-cta-row">
-        <a class="hero-cta" href="#quiz">Get My Personalized Route</a>
+        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
       </div>
     </div>
   </section>
@@ -956,7 +963,7 @@
         </div>
       </div>
       <div class="section-cta-row">
-        <a class="hero-cta" href="#quiz">Start My Free Trip Plan</a>
+        <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
       </div>
     </div>
   </section>
@@ -1045,7 +1052,7 @@
         general: {
           badge: "",
           headline: "Guided Vespa Vacations Through Italy's Most Beautiful Regions",
-          subheadline: "All-inclusive, fully guided multi-day tours. Mauro helps you find your perfect Italian adventure.",
+          subheadline: "All-inclusive, fully guided multi-day tours through Italy's most beautiful regions.",
           quizTitle: "Ready to Experience Italy Like Never Before?",
           quizSubtitle: "Please answer a few quick questions so we can match you with the perfect curated vacation.",
           leadTitle: "Get Vesping Around's free mini-guide by email",
@@ -1224,6 +1231,7 @@
         const quizTitle = document.getElementById("quiz-title");
         const quizSubtitle = document.getElementById("quiz-subtitle");
         const cta = document.getElementById("hero-cta");
+        const isGeneral = destinationKey === "general";
 
         heroHeadline.textContent = content.headline;
         heroSubheadline.textContent = content.subheadline;
@@ -1231,7 +1239,14 @@
         quizSubtitle.textContent = content.quizSubtitle;
         leadStepTitle.textContent = content.leadTitle;
         leadStepCopy.textContent = content.leadCopy;
-        cta.textContent = destinationKey === "general" ? "Book Your Free Consultation" : "Start " + labelFor(regionLabels, destinationKey) + " Quiz";
+        cta.textContent = isGeneral ? "Get Free Mini-Guide" : "Get Free Itinerary";
+
+        document.querySelectorAll(".dynamic-cta").forEach((button) => {
+          const generalText = button.getAttribute("data-cta-general");
+          const regionalText = button.getAttribute("data-cta-regional");
+          if (!generalText || !regionalText) return;
+          button.textContent = isGeneral ? generalText : regionalText;
+        });
 
         if (content.badge) {
           badge.textContent = content.badge;
