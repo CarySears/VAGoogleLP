@@ -424,6 +424,60 @@
       font-size: 0.9rem;
     }
 
+    .debug-panel {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      width: min(420px, calc(100vw - 28px));
+      max-height: 72vh;
+      overflow: auto;
+      background: #111;
+      color: #f3f3f3;
+      border-radius: 10px;
+      border: 1px solid #333;
+      padding: 0.85rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      z-index: 9999;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.76rem;
+      display: none;
+    }
+
+    .debug-panel.visible { display: block; }
+
+    .debug-panel h4 {
+      margin-bottom: 0.6rem;
+      font-size: 0.82rem;
+      color: #f8cc7a;
+    }
+
+    .debug-line {
+      margin-bottom: 0.28rem;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .debug-key { color: #8ec9ff; }
+    .debug-value { color: #f3f3f3; }
+
+    .debug-panel details {
+      margin-top: 0.55rem;
+      border-top: 1px solid #262626;
+      padding-top: 0.45rem;
+    }
+
+    .debug-panel summary {
+      cursor: pointer;
+      color: #d6d6d6;
+      margin-bottom: 0.35rem;
+    }
+
+    .debug-pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #bfe3bf;
+    }
+
     footer {
       background: var(--dark);
       color: rgba(255, 255, 255, 0.55);
@@ -440,6 +494,7 @@
       nav .nav-cta { font-size: 0.8rem; padding: 0.5rem 1rem; }
       .quiz-nav { justify-content: space-between; }
       .included-grid { grid-template-columns: 1fr; }
+      .debug-panel { max-height: 58vh; }
     }
   </style>
 </head>
@@ -626,6 +681,25 @@
     <p>Vespa is a registered trademark of Piaggio &amp; C. SpA. Vesping Around is not affiliated with Piaggio.</p>
   </footer>
 
+  <aside id="debug-panel" class="debug-panel" aria-live="polite">
+    <h4>Debug Mode (debug=1)</h4>
+    <p class="debug-line"><span class="debug-key">ad_destination:</span> <span id="debug-ad-destination" class="debug-value">-</span></p>
+    <p class="debug-line"><span class="debug-key">active_version:</span> <span id="debug-active-version" class="debug-value">-</span></p>
+    <p class="debug-line"><span class="debug-key">current_step:</span> <span id="debug-step" class="debug-value">-</span></p>
+    <p class="debug-line"><span class="debug-key">quiz_month:</span> <span id="debug-month" class="debug-value">-</span></p>
+    <p class="debug-line"><span class="debug-key">quiz_party:</span> <span id="debug-party" class="debug-value">-</span></p>
+    <p class="debug-line"><span class="debug-key">quiz_region:</span> <span id="debug-region" class="debug-value">-</span></p>
+    <p class="debug-line"><span class="debug-key">recommended_destination:</span> <span id="debug-recommendation" class="debug-value">-</span></p>
+    <details>
+      <summary>Tracking params</summary>
+      <pre id="debug-tracking" class="debug-pre"></pre>
+    </details>
+    <details>
+      <summary>Final GHL URL</summary>
+      <pre id="debug-ghl-url" class="debug-pre"></pre>
+    </details>
+  </aside>
+
   <script>
     (function () {
       const destinationContent = {
@@ -713,6 +787,7 @@
       const query = new URLSearchParams(window.location.search);
       const adDestination = normalizeDestination(query.get("destination"));
       const activeDestination = adDestination || "general";
+      const debugEnabled = query.get("debug") === "1";
 
       const quizForm = document.getElementById("quiz-form");
       const allSteps = Array.from(document.querySelectorAll(".quiz-step"));
@@ -730,14 +805,53 @@
       const fallbackFormShell = document.getElementById("fallback-form-shell");
       const fallbackLeadForm = document.getElementById("fallback-lead-form");
       const fallbackFormMessage = document.getElementById("fallback-form-message");
+      const debugPanel = document.getElementById("debug-panel");
 
       let currentStep = 0;
       let recommendation = "";
+      let latestBuiltGhlUrl = "";
       let quizAnswers = {
         quiz_month: "",
         quiz_party: "",
         quiz_region: ""
       };
+
+      function getTrackingObject() {
+        const trackingKeys = [
+          "gclid",
+          "gbraid",
+          "wbraid",
+          "utm_source",
+          "utm_medium",
+          "utm_campaign",
+          "utm_term",
+          "utm_content"
+        ];
+        const out = {};
+        trackingKeys.forEach((key) => {
+          const value = query.get(key);
+          if (value) out[key] = value;
+        });
+        return out;
+      }
+
+      function updateDebugPanel() {
+        if (!debugEnabled || !debugPanel) return;
+
+        const visibleSteps = getVisibleSteps();
+        const tracking = getTrackingObject();
+
+        debugPanel.classList.add("visible");
+        document.getElementById("debug-ad-destination").textContent = adDestination || "general";
+        document.getElementById("debug-active-version").textContent = activeDestination;
+        document.getElementById("debug-step").textContent = String(currentStep + 1) + " / " + String(visibleSteps.length || 0);
+        document.getElementById("debug-month").textContent = quizAnswers.quiz_month || "(empty)";
+        document.getElementById("debug-party").textContent = quizAnswers.quiz_party || "(empty)";
+        document.getElementById("debug-region").textContent = quizAnswers.quiz_region || "(empty)";
+        document.getElementById("debug-recommendation").textContent = recommendation || "(empty)";
+        document.getElementById("debug-tracking").textContent = JSON.stringify(tracking, null, 2) || "{}";
+        document.getElementById("debug-ghl-url").textContent = latestBuiltGhlUrl || "(GHL URL not built yet)";
+      }
 
       function getVisibleSteps() {
         return allSteps.filter((step) => !step.hidden);
@@ -799,6 +913,7 @@
         currentStep = Math.max(0, Math.min(index, visibleSteps.length - 1));
         allSteps.forEach((step) => step.classList.remove("active"));
         if (visibleSteps[currentStep]) visibleSteps[currentStep].classList.add("active");
+        updateDebugPanel();
       }
 
       function stepHasAnswer(stepIndex) {
@@ -830,6 +945,7 @@
         quizAnswers.quiz_month = String(data.get("quiz_month") || "");
         quizAnswers.quiz_party = String(data.get("quiz_party") || "");
         quizAnswers.quiz_region = adDestination || String(data.get("quiz_region") || "");
+        updateDebugPanel();
       }
 
       function updateResultUI() {
@@ -879,23 +995,28 @@
       function tryLoadGhlForm() {
         const baseUrl = (ghlWrapper.dataset.ghlSrc || "").trim();
         if (!baseUrl) {
+          latestBuiltGhlUrl = "(no data-ghl-src configured)";
           ghlPlaceholder.style.display = "block";
           fallbackFormShell.style.display = "block";
           ghlIframe.style.display = "none";
+          updateDebugPanel();
           return;
         }
 
         try {
           ghlIframe.src = buildGhlUrl(baseUrl);
+          latestBuiltGhlUrl = ghlIframe.src;
           ghlPlaceholder.style.display = "none";
           fallbackFormShell.style.display = "none";
           ghlIframe.style.display = "block";
         } catch (error) {
+          latestBuiltGhlUrl = "(invalid data-ghl-src URL)";
           ghlPlaceholder.textContent = "The GHL form URL in data-ghl-src is invalid. Please paste a full URL.";
           ghlPlaceholder.style.display = "block";
           fallbackFormShell.style.display = "block";
           ghlIframe.style.display = "none";
         }
+        updateDebugPanel();
       }
 
       function postWebhook(eventName, extraPayload) {
@@ -936,6 +1057,11 @@
         updateResultUI();
         tryLoadGhlForm();
         postWebhook("quiz_completed");
+        updateDebugPanel();
+      });
+
+      quizForm.addEventListener("change", function () {
+        readQuizAnswers();
       });
 
       if (fallbackLeadForm) {
@@ -953,6 +1079,7 @@
           postWebhook("placeholder_form_submitted", { lead: leadData });
           fallbackFormMessage.textContent = "Thanks. Your request was captured and Mauro will follow up shortly.";
           fallbackLeadForm.reset();
+          updateDebugPanel();
         });
       }
 
@@ -965,6 +1092,7 @@
       bindStepButtons();
       showStep(0);
       tryLoadGhlForm();
+      updateDebugPanel();
     })();
   </script>
 </body>
