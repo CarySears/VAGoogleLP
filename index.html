@@ -227,6 +227,60 @@
     }
     .included-item p { font-size: 0.92rem; opacity: 0.85; }
 
+    .bio-section {
+      padding: 5rem 2rem;
+      background: var(--cream);
+    }
+
+    .bio-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .bio-image-wrap {
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.8rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .bio-image {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      object-fit: cover;
+      aspect-ratio: 4 / 5;
+    }
+
+    .bio-copy {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.6rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .bio-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+
+    .bio-role {
+      color: var(--warm-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1.1rem;
+    }
+
+    .bio-copy p + p { margin-top: 1rem; }
+
     .quiz-section {
       padding: 5rem 2rem;
       background: #fff;
@@ -494,6 +548,7 @@
       nav .nav-cta { font-size: 0.8rem; padding: 0.5rem 1rem; }
       .quiz-nav { justify-content: space-between; }
       .included-grid { grid-template-columns: 1fr; }
+      .bio-inner { grid-template-columns: 1fr; }
       .debug-panel { max-height: 58vh; }
     }
   </style>
@@ -559,6 +614,34 @@
         <article class="included-item"><h4>Expert Guide</h4><p>Local expert guide for the entire journey, never a tour bus in sight.</p></article>
         <article class="included-item"><h4>Full Itinerary</h4><p>Every day planned, every detail handled, you just ride and enjoy.</p></article>
         <article class="included-item"><h4>Mauro's Expertise</h4><p>Personal consultation to match you to the perfect trip and destination.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio-section" id="mauro-bio">
+    <div class="bio-inner">
+      <div class="bio-image-wrap">
+        <img
+          class="bio-image"
+          src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/673e466ef70e31b231c7cbfb.jpeg"
+          alt="Mauro Clerici, founder and tour lead of Vesping Around"
+          loading="lazy"
+        >
+      </div>
+      <div class="bio-copy">
+        <h2 class="bio-name">Mauro Clerici</h2>
+        <p class="bio-role">Founder and Tour Lead</p>
+        <p>
+          I'm Mauro Clerici, founder of Vesping Around - a boutique travel company that crafts intimate experiences across Italy.
+          My background blends years in wellness coaching, hospitality, and cultural travel, all centered on connection and authentic experiences.
+          I design small-group itineraries that highlight Italy's hidden gems - from vineyard dinners and artisan workshops to scenic countryside rides - offering travelers a deeper, more personal way to explore.
+          At the core of everything I do is a passion for slow travel, genuine human connection, and showcasing the Italy that locals know and love.
+        </p>
+        <p>
+          I know Italy beyond the guidebooks - the backroads that wind through vineyards, the family trattorie where time slows down, and the small towns where real life happens.
+          From Tuscany to Puglia and Sicily, I don't just show places; I share the stories, people, and moments that make each region come alive.
+          My goal is to help travelers experience Italy the way Italians do - with authenticity, flavor, and connection.
+        </p>
       </div>
     </div>
   </section>
