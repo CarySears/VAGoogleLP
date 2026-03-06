@@ -76,7 +76,7 @@
     .hero {
       background:
         linear-gradient(135deg, rgba(63, 32, 95, 0.76) 0%, rgba(43, 189, 185, 0.36) 100%),
-        url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80") center/cover no-repeat;
+        url("https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68375cf43786e52d0f54dcd2.jpeg") center/cover no-repeat;
       min-height: 86vh;
       display: flex;
       flex-direction: column;
@@ -188,9 +188,43 @@
     .destination-card.highlighted { border-color: var(--gold); }
 
     .card-image { height: 200px; background-size: cover; background-position: center; }
-    .tuscany-img { background-image: url("https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&q=80"); }
-    .sicily-img { background-image: url("https://images.unsplash.com/photo-1551918120-9739cb430c6d?w=600&q=80"); }
-    .puglia-img { background-image: url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"); }
+    .tuscany-img { background-image: url("https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab1750449f5890b.jpeg"); }
+    .sicily-img { background-image: url("https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf538f8124bc31b195dd.jpeg"); }
+    .puglia-img { background-image: url("https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab17556b9f5890d.jpeg"); }
+
+    .gallery-section {
+      padding: 5rem 2rem;
+      background: var(--cream);
+    }
+
+    .gallery-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      background: #fff;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item:nth-child(3n) img { min-height: 240px; }
+    .gallery-item:nth-child(5n) img { min-height: 210px; }
 
     .card-body { padding: 1.5rem; }
 
@@ -531,6 +565,12 @@
       margin-top: 1rem;
     }
 
+    .calendar-disclaimer {
+      margin-top: 0.7rem;
+      color: var(--warm-gray);
+      font-size: 0.9rem;
+    }
+
     .btn-link {
       text-decoration: none;
       display: inline-flex;
@@ -669,6 +709,30 @@
           <div class="card-tags"><span class="tag">Trulli Villages</span><span class="tag">Valle d'Itria</span><span class="tag">September</span></div>
         </div>
       </article>
+    </div>
+  </section>
+
+  <section class="gallery-section" id="photo-gallery">
+    <div class="gallery-inner">
+      <h2 class="section-title">Moments From The Road</h2>
+      <p class="section-subtitle">Real rides, real villages, real Italy. A quick visual gallery from Vesping Around experiences.</p>
+      <div class="gallery-grid">
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52580e6c6174054f09.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf5261cd2db4b9d1dd55.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf532d90197ea15bc665.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52cbc8a8bce485e491.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab175b719f5890c.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf528f8124170ab195cf.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf5361cd2d6c33d1ddc5.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf52f2a4d3814a99e6c9.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6831fd54b7ad296c03e98b02.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6831fa26b6893f3ef7f3c376.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d5f4d69632f05b21a.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6df94eae91dc455199.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d83fcbc3b8a559466.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6d11cf9d9c222325f2.jpeg" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e77441df52ec30ec76169.webp" alt="Vesping Around travel moment in Italy" loading="lazy"></figure>
+      </div>
     </div>
   </section>
 
@@ -844,6 +908,7 @@
         </a>
         <button type="button" class="btn btn-secondary" id="calendar-modal-done">Not now</button>
       </div>
+      <p class="calendar-disclaimer">No payment required. No obligation to book.</p>
     </div>
   </div>
 
