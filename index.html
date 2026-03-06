@@ -7,7 +7,7 @@
   <meta name="description" content="All-inclusive, fully guided Vespa vacations through Tuscany, Sicily, and Puglia.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -237,6 +237,29 @@
       margin: 0 auto;
     }
 
+    .quiz-intro {
+      text-align: center;
+      color: var(--warm-gray);
+      margin-top: 0.5rem;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quiz-pricing-note {
+      text-align: center;
+      color: var(--dark);
+      margin-top: 1rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.98rem;
+      background: #fff8ed;
+      border: 1px solid #eddcc4;
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+    }
+
     .quiz-shell {
       margin-top: 2rem;
       border: 1px solid #ebdfd0;
@@ -341,6 +364,7 @@
       color: var(--warm-gray);
       font-size: 0.95rem;
       max-width: 580px;
+      margin-bottom: 1rem;
     }
 
     .ghl-iframe {
@@ -348,6 +372,56 @@
       min-height: 580px;
       border: 0;
       display: none;
+    }
+
+    .fallback-form-shell {
+      width: 100%;
+      max-width: 620px;
+      text-align: left;
+    }
+
+    .fallback-form-shell h4 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .fallback-form-shell > p {
+      color: var(--warm-gray);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .fallback-lead-form {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .fallback-lead-form input,
+    .fallback-lead-form select {
+      width: 100%;
+      border: 1px solid #d6cabd;
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+      font: inherit;
+      background: #fff;
+    }
+
+    .calendar-placeholder {
+      margin-top: 0.9rem;
+      border: 1px dashed #cbbca8;
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.9rem;
+      color: var(--warm-gray);
+      font-size: 0.92rem;
+    }
+
+    .fallback-message {
+      margin-top: 0.8rem;
+      color: var(--olive);
+      font-weight: 700;
+      font-size: 0.9rem;
     }
 
     footer {
@@ -436,17 +510,23 @@
 
   <section class="quiz-section" id="quiz">
     <div class="quiz-inner">
-      <h2 class="section-title" id="quiz-title">Find Your Best Italy Route</h2>
-      <p class="section-subtitle" id="quiz-subtitle">Take this quick quiz. We will tailor your consultation to your ideal destination.</p>
+      <h2 class="section-title" id="quiz-title">Ready to Experience Italy Like Never Before?</h2>
+      <p class="quiz-intro" id="quiz-subtitle">Please answer a few quick questions so we can match you with the perfect curated vacation.</p>
+      <p class="quiz-pricing-note" id="quiz-pricing-note">
+        Our multi-day all-inclusive trips start at $3,150 per person and include everything: a modern Vespa, one central high-end boutique stay, on-site guide, authentic local meals, and activities.
+      </p>
       <div class="quiz-shell">
         <form id="quiz-form">
           <div class="quiz-step active" data-step="1">
-            <p class="step-meta">Step 1 of 3</p>
-            <h3>What kind of ride sounds best?</h3>
+            <p class="step-meta" id="step-1-meta">Step 1 of 3</p>
+            <h3>When are you hoping to travel?</h3>
             <div class="option-grid">
-              <label class="quiz-option"><input type="radio" name="quiz_style" value="postcard_roads"> Postcard roads, vineyards, and classic villages</label>
-              <label class="quiz-option"><input type="radio" name="quiz_style" value="coastal_history"> Coastal rides, history, and Mediterranean energy</label>
-              <label class="quiz-option"><input type="radio" name="quiz_style" value="hidden_gems"> Hidden gems, local culture, and less touristy routes</label>
+              <label class="quiz-option"><input type="radio" name="quiz_month" value="may"> May</label>
+              <label class="quiz-option"><input type="radio" name="quiz_month" value="june"> June</label>
+              <label class="quiz-option"><input type="radio" name="quiz_month" value="july"> July</label>
+              <label class="quiz-option"><input type="radio" name="quiz_month" value="september"> September</label>
+              <label class="quiz-option"><input type="radio" name="quiz_month" value="october"> October</label>
+              <label class="quiz-option"><input type="radio" name="quiz_month" value="not_sure_yet"> Not Sure Yet</label>
             </div>
             <div class="quiz-nav">
               <button type="button" class="btn btn-primary" data-next>Next</button>
@@ -454,38 +534,44 @@
           </div>
 
           <div class="quiz-step" data-step="2">
-            <p class="step-meta">Step 2 of 3</p>
-            <h3>When are you most likely to travel?</h3>
+            <p class="step-meta" id="step-2-meta">Step 2 of 3</p>
+            <h3>Who would you be traveling with?</h3>
             <div class="option-grid">
-              <label class="quiz-option"><input type="radio" name="quiz_month" value="may_october"> May or October</label>
-              <label class="quiz-option"><input type="radio" name="quiz_month" value="june_october"> June or October</label>
-              <label class="quiz-option"><input type="radio" name="quiz_month" value="september"> September</label>
-              <label class="quiz-option"><input type="radio" name="quiz_month" value="flexible"> I am flexible</label>
+              <label class="quiz-option"><input type="radio" name="quiz_party" value="solo"> Solo</label>
+              <label class="quiz-option"><input type="radio" name="quiz_party" value="one_other_person"> With one other person</label>
+              <label class="quiz-option"><input type="radio" name="quiz_party" value="group_3_plus"> With a group (3+)</label>
+              <label class="quiz-option"><input type="radio" name="quiz_party" value="private_group_bespoke"> Interested in a private group trip (bespoke)</label>
             </div>
             <div class="quiz-nav">
               <button type="button" class="btn btn-secondary" data-prev>Back</button>
-              <button type="button" class="btn btn-primary" data-next>Next</button>
+              <button type="button" class="btn btn-primary" id="step-2-next" data-next>Next</button>
             </div>
           </div>
 
-          <div class="quiz-step" data-step="3">
-            <p class="step-meta">Step 3 of 3</p>
-            <h3>What matters most on this trip?</h3>
+          <div class="quiz-step" data-step="3" id="region-step">
+            <p class="step-meta" id="step-3-meta">Step 3 of 3</p>
+            <h3>Which region are you most interested in?</h3>
             <div class="option-grid">
-              <label class="quiz-option"><input type="radio" name="quiz_priority" value="classic_italy"> Timeless Italy and iconic scenery</label>
-              <label class="quiz-option"><input type="radio" name="quiz_priority" value="culture_food"> Deep culture and food moments</label>
-              <label class="quiz-option"><input type="radio" name="quiz_priority" value="quiet_authentic"> Quiet roads and authentic small towns</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="puglia"> Puglia (Alberobello, Salento)</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="sicily"> Sicily (Taormina, Palermo)</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="tuscany"> Tuscany (Chianti, Isola D'elba)</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="veneto"> Veneto (Prosecco and Grappa)</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="liguria"> Liguria (Cinque Terre)</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="sardenia"> Sardenia</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="center_italy_lakes"> Center (Italy Lakes)</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="northern_italy_lakes"> Northern (Italy Lakes)</label>
+              <label class="quiz-option"><input type="radio" name="quiz_region" value="not_sure_yet"> Not sure yet</label>
             </div>
             <div class="quiz-nav">
               <button type="button" class="btn btn-secondary" data-prev>Back</button>
-              <button type="submit" class="btn btn-primary">See My Recommendation</button>
+              <button type="submit" class="btn btn-primary">Continue to Form</button>
             </div>
           </div>
         </form>
 
         <div class="quiz-result" id="quiz-result">
-          <h4 id="quiz-result-title">Recommended destination: Tuscany</h4>
-          <p id="quiz-result-copy">Great match. Continue below and Mauro will personalize your itinerary.</p>
+          <h4 id="quiz-result-title">Great, you are all set.</h4>
+          <p id="quiz-result-copy">Continue below and Mauro will personalize your itinerary.</p>
           <div class="quiz-nav" style="margin-top: 0.8rem;">
             <button type="button" class="btn btn-primary" id="continue-to-form">Continue to Form</button>
           </div>
@@ -507,9 +593,29 @@
         data-webhook-url=""
       >
         <p class="ghl-placeholder" id="ghl-placeholder">
-          Add your GHL form URL in the <code>data-ghl-src</code> attribute on <code>#ghl-form-wrapper</code>.
-          The script will automatically pass destination, quiz answers, and ad tracking parameters.
+          Placeholder lead form is active. When your GHL embed is ready, add it to <code>data-ghl-src</code> on <code>#ghl-form-wrapper</code> and the page will auto-pass destination + quiz + ad parameters.
         </p>
+        <div class="fallback-form-shell" id="fallback-form-shell">
+          <h4>Consultation Request</h4>
+          <p>Temporary placeholder form while GHL is finalized.</p>
+          <form class="fallback-lead-form" id="fallback-lead-form">
+            <input type="text" name="full_name" placeholder="Full Name" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="date" name="preferred_date" required>
+            <select name="preferred_time" required>
+              <option value="">Preferred Time</option>
+              <option value="morning">Morning</option>
+              <option value="afternoon">Afternoon</option>
+              <option value="evening">Evening</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Request Consultation</button>
+          </form>
+          <div class="calendar-placeholder">
+            Booking calendar placeholder: connect your calendar widget here (Calendly / GHL calendar) when ready.
+          </div>
+          <p class="fallback-message" id="fallback-form-message"></p>
+        </div>
         <iframe id="ghl-iframe" class="ghl-iframe" title="Vesping Around Consultation Form" loading="lazy"></iframe>
       </div>
     </div>
@@ -528,32 +634,32 @@
           headline: "Guided Vespa Vacations Through Italy's Most Beautiful Regions",
           subheadline: "All-inclusive, fully guided multi-day tours. Mauro helps you find your perfect Italian adventure.",
           formSubheadline: "Tell us a little about yourself. Mauro will help you find the perfect Vespa vacation in Italy.",
-          quizTitle: "Find Your Best Italy Route",
-          quizSubtitle: "Take this quick quiz. We will tailor your consultation to your ideal destination."
+          quizTitle: "Ready to Experience Italy Like Never Before?",
+          quizSubtitle: "Please answer a few quick questions so we can match you with the perfect curated vacation."
         },
         tuscany: {
           badge: "Tuscany",
           headline: "Ride Through Tuscany on a Classic Vespa",
           subheadline: "All-inclusive, fully guided multi-day tours through Chianti, medieval hilltowns, and the Tuscan countryside.",
           formSubheadline: "Tell us about yourself. Mauro will reach out to plan your perfect Tuscany adventure.",
-          quizTitle: "Find Your Best Tuscany Route",
-          quizSubtitle: "Quick quiz: we will shape your Tuscany consultation around your riding style."
+          quizTitle: "Ready to Experience Tuscany Like Never Before?",
+          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Tuscany vacation."
         },
         sicily: {
           badge: "Sicily",
           headline: "Explore Sicily on a Classic Vespa",
           subheadline: "All-inclusive, fully guided multi-day tours through coastal villages, ancient temples, and Sicilian culture.",
           formSubheadline: "Tell us about yourself. Mauro will reach out to plan your perfect Sicily adventure.",
-          quizTitle: "Find Your Best Sicily Route",
-          quizSubtitle: "Quick quiz: we will shape your Sicily consultation around your travel priorities."
+          quizTitle: "Ready to Experience Sicily Like Never Before?",
+          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Sicily vacation."
         },
         puglia: {
           badge: "Puglia",
           headline: "Discover Hidden Puglia by Vespa",
           subheadline: "All-inclusive, fully guided multi-day tours through whitewashed trulli villages and the hidden heel of Italy.",
           formSubheadline: "Tell us about yourself. Mauro will reach out to plan your perfect Puglia adventure.",
-          quizTitle: "Find Your Best Puglia Route",
-          quizSubtitle: "Quick quiz: we will shape your Puglia consultation around your ideal itinerary."
+          quizTitle: "Ready to Experience Puglia Like Never Before?",
+          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Puglia vacation."
         }
       };
 
@@ -563,24 +669,32 @@
         puglia: "card-puglia"
       };
 
-      const query = new URLSearchParams(window.location.search);
-      const adDestination = normalizeDestination(query.get("destination"));
-      const activeDestination = adDestination || "general";
+      const regionLabels = {
+        tuscany: "Tuscany",
+        sicily: "Sicily",
+        puglia: "Puglia",
+        veneto: "Veneto",
+        liguria: "Liguria",
+        sardenia: "Sardenia",
+        center_italy_lakes: "Center (Italy Lakes)",
+        northern_italy_lakes: "Northern (Italy Lakes)",
+        not_sure_yet: "Not sure yet"
+      };
 
-      const quizForm = document.getElementById("quiz-form");
-      const steps = Array.from(document.querySelectorAll(".quiz-step"));
-      const resultBox = document.getElementById("quiz-result");
-      const continueBtn = document.getElementById("continue-to-form");
-      const ghlWrapper = document.getElementById("ghl-form-wrapper");
-      const ghlIframe = document.getElementById("ghl-iframe");
-      const ghlPlaceholder = document.getElementById("ghl-placeholder");
+      const partyLabels = {
+        solo: "Solo",
+        one_other_person: "With one other person",
+        group_3_plus: "With a group (3+)",
+        private_group_bespoke: "Private group trip (bespoke)"
+      };
 
-      let currentStep = 0;
-      let recommendation = "";
-      let quizAnswers = {
-        quiz_style: "",
-        quiz_month: "",
-        quiz_priority: ""
+      const monthLabels = {
+        may: "May",
+        june: "June",
+        july: "July",
+        september: "September",
+        october: "October",
+        not_sure_yet: "Not sure yet"
       };
 
       function normalizeDestination(value) {
@@ -590,6 +704,62 @@
           return normalized;
         }
         return "";
+      }
+
+      function labelFor(map, key) {
+        return map[key] || key || "Not provided";
+      }
+
+      const query = new URLSearchParams(window.location.search);
+      const adDestination = normalizeDestination(query.get("destination"));
+      const activeDestination = adDestination || "general";
+
+      const quizForm = document.getElementById("quiz-form");
+      const allSteps = Array.from(document.querySelectorAll(".quiz-step"));
+      const regionStep = document.getElementById("region-step");
+      const resultBox = document.getElementById("quiz-result");
+      const continueBtn = document.getElementById("continue-to-form");
+      const step1Meta = document.getElementById("step-1-meta");
+      const step2Meta = document.getElementById("step-2-meta");
+      const step3Meta = document.getElementById("step-3-meta");
+      const step2Next = document.getElementById("step-2-next");
+
+      const ghlWrapper = document.getElementById("ghl-form-wrapper");
+      const ghlIframe = document.getElementById("ghl-iframe");
+      const ghlPlaceholder = document.getElementById("ghl-placeholder");
+      const fallbackFormShell = document.getElementById("fallback-form-shell");
+      const fallbackLeadForm = document.getElementById("fallback-lead-form");
+      const fallbackFormMessage = document.getElementById("fallback-form-message");
+
+      let currentStep = 0;
+      let recommendation = "";
+      let quizAnswers = {
+        quiz_month: "",
+        quiz_party: "",
+        quiz_region: ""
+      };
+
+      function getVisibleSteps() {
+        return allSteps.filter((step) => !step.hidden);
+      }
+
+      function configureQuizByTraffic() {
+        if (adDestination) {
+          regionStep.hidden = true;
+          step1Meta.textContent = "Step 1 of 2";
+          step2Meta.textContent = "Step 2 of 2";
+          step2Next.textContent = "Continue to Form";
+          step2Next.type = "submit";
+          step2Next.removeAttribute("data-next");
+        } else {
+          regionStep.hidden = false;
+          step1Meta.textContent = "Step 1 of 3";
+          step2Meta.textContent = "Step 2 of 3";
+          step3Meta.textContent = "Step 3 of 3";
+          step2Next.textContent = "Next";
+          step2Next.type = "button";
+          step2Next.setAttribute("data-next", "");
+        }
       }
 
       function applyPersonalization(destinationKey) {
@@ -607,7 +777,7 @@
         formSubheadline.textContent = content.formSubheadline;
         quizTitle.textContent = content.quizTitle;
         quizSubtitle.textContent = content.quizSubtitle;
-        cta.textContent = destinationKey === "general" ? "Book Your Free Consultation" : "Start " + capitalize(destinationKey) + " Quiz";
+        cta.textContent = destinationKey === "general" ? "Book Your Free Consultation" : "Start " + labelFor(regionLabels, destinationKey) + " Quiz";
 
         if (content.badge) {
           badge.textContent = content.badge;
@@ -624,19 +794,19 @@
         }
       }
 
-      function capitalize(value) {
-        return value.charAt(0).toUpperCase() + value.slice(1);
-      }
-
       function showStep(index) {
-        currentStep = Math.max(0, Math.min(index, steps.length - 1));
-        steps.forEach((step, i) => step.classList.toggle("active", i === currentStep));
+        const visibleSteps = getVisibleSteps();
+        currentStep = Math.max(0, Math.min(index, visibleSteps.length - 1));
+        allSteps.forEach((step) => step.classList.remove("active"));
+        if (visibleSteps[currentStep]) visibleSteps[currentStep].classList.add("active");
       }
 
       function stepHasAnswer(stepIndex) {
-        const step = steps[stepIndex];
+        const visibleSteps = getVisibleSteps();
+        const step = visibleSteps[stepIndex];
         if (!step) return false;
         const radios = step.querySelectorAll("input[type='radio']");
+        if (!radios.length) return true;
         return Array.from(radios).some((radio) => radio.checked);
       }
 
@@ -657,40 +827,25 @@
 
       function readQuizAnswers() {
         const data = new FormData(quizForm);
-        quizAnswers.quiz_style = String(data.get("quiz_style") || "");
         quizAnswers.quiz_month = String(data.get("quiz_month") || "");
-        quizAnswers.quiz_priority = String(data.get("quiz_priority") || "");
-      }
-
-      function pickRecommendation() {
-        const scores = { tuscany: 0, sicily: 0, puglia: 0 };
-
-        if (quizAnswers.quiz_style === "postcard_roads") scores.tuscany += 2;
-        if (quizAnswers.quiz_style === "coastal_history") scores.sicily += 2;
-        if (quizAnswers.quiz_style === "hidden_gems") scores.puglia += 2;
-
-        if (quizAnswers.quiz_month === "may_october") scores.tuscany += 2;
-        if (quizAnswers.quiz_month === "june_october") scores.sicily += 2;
-        if (quizAnswers.quiz_month === "september") scores.puglia += 2;
-
-        if (quizAnswers.quiz_priority === "classic_italy") scores.tuscany += 1;
-        if (quizAnswers.quiz_priority === "culture_food") scores.sicily += 1;
-        if (quizAnswers.quiz_priority === "quiet_authentic") scores.puglia += 1;
-
-        if (adDestination) scores[adDestination] += 2;
-
-        return Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+        quizAnswers.quiz_party = String(data.get("quiz_party") || "");
+        quizAnswers.quiz_region = adDestination || String(data.get("quiz_region") || "");
       }
 
       function updateResultUI() {
         const title = document.getElementById("quiz-result-title");
         const copy = document.getElementById("quiz-result-copy");
         const context = document.getElementById("context-note");
-        const displayName = capitalize(recommendation);
 
-        title.textContent = "Recommended destination: " + displayName;
-        copy.textContent = "Great match. Continue below and Mauro will personalize your itinerary for " + displayName + ".";
-        context.textContent = "Quiz summary: " + displayName + " recommendation based on your responses.";
+        title.textContent = "Great, we saved your trip preferences.";
+        copy.textContent = "Continue below to share your contact details and preferred booking time.";
+        context.textContent =
+          "Quiz summary: " +
+          labelFor(monthLabels, quizAnswers.quiz_month) +
+          " | " +
+          labelFor(partyLabels, quizAnswers.quiz_party) +
+          " | " +
+          labelFor(regionLabels, recommendation);
         resultBox.style.display = "block";
       }
 
@@ -714,9 +869,9 @@
 
         if (adDestination) url.searchParams.set("destination", adDestination);
         if (recommendation) url.searchParams.set("recommended_destination", recommendation);
-        if (quizAnswers.quiz_style) url.searchParams.set("quiz_style", quizAnswers.quiz_style);
         if (quizAnswers.quiz_month) url.searchParams.set("quiz_month", quizAnswers.quiz_month);
-        if (quizAnswers.quiz_priority) url.searchParams.set("quiz_priority", quizAnswers.quiz_priority);
+        if (quizAnswers.quiz_party) url.searchParams.set("quiz_party", quizAnswers.quiz_party);
+        if (quizAnswers.quiz_region) url.searchParams.set("quiz_region", quizAnswers.quiz_region);
 
         return url.toString();
       }
@@ -725,6 +880,7 @@
         const baseUrl = (ghlWrapper.dataset.ghlSrc || "").trim();
         if (!baseUrl) {
           ghlPlaceholder.style.display = "block";
+          fallbackFormShell.style.display = "block";
           ghlIframe.style.display = "none";
           return;
         }
@@ -732,15 +888,17 @@
         try {
           ghlIframe.src = buildGhlUrl(baseUrl);
           ghlPlaceholder.style.display = "none";
+          fallbackFormShell.style.display = "none";
           ghlIframe.style.display = "block";
         } catch (error) {
           ghlPlaceholder.textContent = "The GHL form URL in data-ghl-src is invalid. Please paste a full URL.";
           ghlPlaceholder.style.display = "block";
+          fallbackFormShell.style.display = "block";
           ghlIframe.style.display = "none";
         }
       }
 
-      function postWebhook(eventName) {
+      function postWebhook(eventName, extraPayload) {
         const webhookUrl = (ghlWrapper.dataset.webhookUrl || "").trim();
         if (!webhookUrl) return;
 
@@ -752,6 +910,10 @@
           page_url: window.location.href,
           timestamp: new Date().toISOString()
         };
+
+        if (extraPayload && typeof extraPayload === "object") {
+          Object.assign(payload, extraPayload);
+        }
 
         fetch(webhookUrl, {
           method: "POST",
@@ -766,20 +928,41 @@
       quizForm.addEventListener("submit", function (event) {
         event.preventDefault();
         readQuizAnswers();
-        if (!quizAnswers.quiz_style || !quizAnswers.quiz_month || !quizAnswers.quiz_priority) return;
 
-        recommendation = pickRecommendation();
+        if (!quizAnswers.quiz_month || !quizAnswers.quiz_party) return;
+        if (!adDestination && !quizAnswers.quiz_region) return;
+
+        recommendation = quizAnswers.quiz_region || adDestination || "not_sure_yet";
         updateResultUI();
         tryLoadGhlForm();
         postWebhook("quiz_completed");
       });
 
+      if (fallbackLeadForm) {
+        fallbackLeadForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const leadData = {
+            full_name: String(fallbackLeadForm.elements.full_name.value || ""),
+            phone: String(fallbackLeadForm.elements.phone.value || ""),
+            email: String(fallbackLeadForm.elements.email.value || ""),
+            preferred_date: String(fallbackLeadForm.elements.preferred_date.value || ""),
+            preferred_time: String(fallbackLeadForm.elements.preferred_time.value || "")
+          };
+
+          postWebhook("placeholder_form_submitted", { lead: leadData });
+          fallbackFormMessage.textContent = "Thanks. Your request was captured and Mauro will follow up shortly.";
+          fallbackLeadForm.reset();
+        });
+      }
+
       continueBtn.addEventListener("click", function () {
         document.getElementById("form").scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
-      bindStepButtons();
       applyPersonalization(activeDestination);
+      configureQuizByTraffic();
+      bindStepButtons();
       showStep(0);
       tryLoadGhlForm();
     })();
