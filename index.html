@@ -134,6 +134,13 @@
 
     .hero-cta:hover { background: #DE6F42; transform: translateY(-2px); }
 
+    .hero-proof {
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.94);
+      letter-spacing: 0.02em;
+    }
+
     .trust-bar {
       display: flex;
       gap: 2rem;
@@ -156,7 +163,7 @@
 
     .section-title {
       font-family: "Cormorant Garamond", serif;
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 4.2vw, 2.7rem);
       font-weight: 600;
       text-align: center;
       margin-bottom: 0.75rem;
@@ -293,7 +300,23 @@
       margin-top: 3rem;
     }
 
-    .included-item { text-align: center; padding: 1.5rem; }
+    .included-item {
+      text-align: left;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+
+    .included-thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
     .included-item h4 {
       font-family: "Cormorant Garamond", serif;
       font-size: 1.3rem;
@@ -680,6 +703,26 @@
       color: #bfe3bf;
     }
 
+    .mobile-sticky-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2500;
+      background: rgba(255, 255, 255, 0.96);
+      border-top: 1px solid #e8deef;
+      padding: 0.6rem 0.7rem calc(0.65rem + env(safe-area-inset-bottom));
+      display: none;
+      backdrop-filter: blur(6px);
+    }
+
+    .mobile-sticky-cta .hero-cta {
+      width: 100%;
+      text-align: center;
+      font-size: 0.93rem;
+      padding: 0.82rem 1rem;
+    }
+
     footer {
       background: var(--dark);
       color: rgba(255, 255, 255, 0.55);
@@ -689,6 +732,7 @@
     }
 
     @media (max-width: 700px) {
+      body { padding-bottom: 78px; }
       .trust-bar { flex-direction: column; align-items: center; gap: 1rem; }
       .destinations-grid { grid-template-columns: 1fr; }
       .included-grid { grid-template-columns: repeat(2, 1fr); }
@@ -697,7 +741,11 @@
       .logo-image { height: 38px; }
       .quiz-nav { justify-content: space-between; }
       .included-grid { grid-template-columns: 1fr; }
+      .section { padding: 3.8rem 1rem; }
+      .quiz-section, .media-section, .gallery-section, .bio-section, .included-section { padding: 3.8rem 1rem; }
+      .hero { min-height: 74vh; padding: 3.2rem 1rem; }
       .bio-inner { grid-template-columns: 1fr; }
+      .mobile-sticky-cta { display: block; }
       .debug-panel { max-height: 58vh; }
     }
   </style>
@@ -721,6 +769,7 @@
     <h1 id="hero-headline">Guided Vespa Vacations Through Italy's Most Beautiful Regions</h1>
     <p id="hero-subheadline">All-inclusive, fully guided multi-day tours through Italy's most beautiful regions.</p>
     <a class="hero-cta dynamic-cta" href="#quiz" id="hero-cta" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
+    <p class="hero-proof">Small groups | curated routes | free planning call</p>
     <div class="trust-bar">
       <div class="trust-item">Fully All-Inclusive</div>
       <div class="trust-item">Expert Local Guides</div>
@@ -906,12 +955,36 @@
       <h2 class="section-title">Everything Included. Nothing to Plan.</h2>
       <p class="section-subtitle">This is a fully curated, all-inclusive vacation, not a rental or a day tour.</p>
       <div class="included-grid">
-        <article class="included-item"><h4>Classic Scooter</h4><p>Fully serviced vintage scooter with safety briefing and support vehicle throughout.</p></article>
-        <article class="included-item"><h4>Accommodations</h4><p>Hand-selected boutique hotels and agriturismos along the route.</p></article>
-        <article class="included-item"><h4>Meals and Tastings</h4><p>Regional dining, local markets, and authentic trattorias, all arranged.</p></article>
-        <article class="included-item"><h4>Expert Guide</h4><p>Local expert guide for the entire journey, never a tour bus in sight.</p></article>
-        <article class="included-item"><h4>Full Itinerary</h4><p>Every day planned, every detail handled, you just ride and enjoy.</p></article>
-        <article class="included-item"><h4>Mauro's Expertise</h4><p>Personal consultation to match you to the perfect trip and destination.</p></article>
+        <article class="included-item">
+          <img class="included-thumb" src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf539ab1750449f5890b.jpeg" alt="Guided Vespa group ride" loading="lazy">
+          <h4>24/7 Guided</h4>
+          <p>Vesping Around provides expert, native guides available 24/7 to ensure a smooth, informative, and worry-free experience throughout your journey.</p>
+        </article>
+        <article class="included-item">
+          <img class="included-thumb" src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/68daaf5261cd2db4b9d1dd55.jpeg" alt="Small group Vespa touring experience" loading="lazy">
+          <h4>Small Groups</h4>
+          <p>With small groups, you'll enjoy a more intimate, personalized experience, allowing for deeper connections and a truly impactful adventure.</p>
+        </article>
+        <article class="included-item">
+          <img class="included-thumb" src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/674e774412775b2e0edf5f90.jpeg" alt="Multi-day Italy scenic route" loading="lazy">
+          <h4>Multi-Day</h4>
+          <p>Our multi-day itineraries let you fully immerse yourself in the culture and landscapes, giving you ample time to explore and savor each destination.</p>
+        </article>
+        <article class="included-item">
+          <img class="included-thumb" src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6726859a4ff0637be190a73b.jpeg" alt="All-inclusive Vespa tour essentials" loading="lazy">
+          <h4>All-Inclusive</h4>
+          <p>Every Vesping Around tour is all-inclusive, covering everything from vehicle rental and accommodations to meals and guided excursions, so you can relax and enjoy the ride. Oh, and you get the popular Vesping Around Travel Kit!</p>
+        </article>
+        <article class="included-item">
+          <img class="included-thumb" src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67b64d6df94eae91dc455199.jpeg" alt="Hands-on cultural and food experiences in Italy" loading="lazy">
+          <h4>Hands-On</h4>
+          <p>Engage in hands-on food and cultural experiences like cooking classes, workshops, local museums, and more, allowing you to actively connect with local culture.</p>
+        </article>
+        <article class="included-item">
+          <img class="included-thumb" src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6713af6080829f1b6a87657a.jpeg" alt="Off the beaten path Italy roads and villages" loading="lazy">
+          <h4>Off Beaten Path</h4>
+          <p>We take you off the beaten path, exploring hidden gems and quiet spots away from the tourist crowds for a truly authentic experience.</p>
+        </article>
       </div>
       <div class="section-cta-row">
         <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
@@ -1022,6 +1095,10 @@
     </div>
   </div>
 
+  <div class="mobile-sticky-cta">
+    <a class="hero-cta dynamic-cta" href="#quiz" data-cta-general="Get Free Mini-Guide" data-cta-regional="Get Free Itinerary">Get Free Mini-Guide</a>
+  </div>
+
   <footer>
     <p>&copy; 2026 Vesping Around | All-Inclusive Guided Vespa Tours in Italy</p>
     <p>Vespa is a registered trademark of Piaggio &amp; C. SpA. Vesping Around is not affiliated with Piaggio.</p>
@@ -1030,6 +1107,7 @@
   <aside id="debug-panel" class="debug-panel" aria-live="polite">
     <h4>Debug Mode (debug=1)</h4>
     <p class="debug-line"><span class="debug-key">ad_destination:</span> <span id="debug-ad-destination" class="debug-value">-</span></p>
+    <p class="debug-line"><span class="debug-key">cta_variant:</span> <span id="debug-cta-variant" class="debug-value">-</span></p>
     <p class="debug-line"><span class="debug-key">active_version:</span> <span id="debug-active-version" class="debug-value">-</span></p>
     <p class="debug-line"><span class="debug-key">current_step:</span> <span id="debug-step" class="debug-value">-</span></p>
     <p class="debug-line"><span class="debug-key">quiz_month:</span> <span id="debug-month" class="debug-value">-</span></p>
@@ -1138,6 +1216,22 @@
       const adDestination = normalizeDestination(query.get("destination"));
       const activeDestination = adDestination || "general";
       const debugEnabled = query.get("debug") === "1";
+      const requestedVariant = (query.get("cta_variant") || "").toLowerCase();
+
+      function resolveCtaVariant() {
+        if (requestedVariant === "route" || requestedVariant === "control") return requestedVariant;
+        try {
+          const storedVariant = localStorage.getItem("va_cta_variant");
+          if (storedVariant === "route" || storedVariant === "control") return storedVariant;
+          const newVariant = Math.random() < 0.5 ? "control" : "route";
+          localStorage.setItem("va_cta_variant", newVariant);
+          return newVariant;
+        } catch (error) {
+          return "control";
+        }
+      }
+
+      const ctaVariant = resolveCtaVariant();
 
       const quizShell = document.getElementById("quiz-shell");
       const quizForm = document.getElementById("quiz-form");
@@ -1196,6 +1290,7 @@
 
         debugPanel.classList.add("visible");
         document.getElementById("debug-ad-destination").textContent = adDestination || "general";
+        document.getElementById("debug-cta-variant").textContent = ctaVariant;
         document.getElementById("debug-active-version").textContent = activeDestination;
         document.getElementById("debug-step").textContent = String(currentStep + 1) + " / " + String(visibleSteps.length || 0);
         document.getElementById("debug-month").textContent = quizAnswers.quiz_month || "(empty)";
@@ -1232,6 +1327,7 @@
         const quizSubtitle = document.getElementById("quiz-subtitle");
         const cta = document.getElementById("hero-cta");
         const isGeneral = destinationKey === "general";
+        const useRouteCtaVariant = ctaVariant === "route";
 
         heroHeadline.textContent = content.headline;
         heroSubheadline.textContent = content.subheadline;
@@ -1239,13 +1335,14 @@
         quizSubtitle.textContent = content.quizSubtitle;
         leadStepTitle.textContent = content.leadTitle;
         leadStepCopy.textContent = content.leadCopy;
-        cta.textContent = isGeneral ? "Get Free Mini-Guide" : "Get Free Itinerary";
+        cta.textContent = useRouteCtaVariant ? "Get My Italy Route Plan" : (isGeneral ? "Get Free Mini-Guide" : "Get Free Itinerary");
 
         document.querySelectorAll(".dynamic-cta").forEach((button) => {
           const generalText = button.getAttribute("data-cta-general");
           const regionalText = button.getAttribute("data-cta-regional");
           if (!generalText || !regionalText) return;
-          button.textContent = isGeneral ? generalText : regionalText;
+          const defaultText = isGeneral ? generalText : regionalText;
+          button.textContent = useRouteCtaVariant ? "Get My Italy Route Plan" : defaultText;
         });
 
         if (content.badge) {
