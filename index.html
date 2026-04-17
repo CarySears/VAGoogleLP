@@ -512,16 +512,19 @@
     }
 
     #ghl-form-wrapper,
-    #ghl-form-wrapper-tuscany {
+    #ghl-form-wrapper-tuscany,
+    #ghl-form-wrapper-sicily {
       margin-top: 2rem;
       width: 100%;
     }
 
     #ghl-form-wrapper { min-height: 1494px; }
     #ghl-form-wrapper-tuscany { min-height: 1411px; }
+    #ghl-form-wrapper-sicily { min-height: 1386px; }
 
     #ghl-form-wrapper iframe,
-    #ghl-form-wrapper-tuscany iframe {
+    #ghl-form-wrapper-tuscany iframe,
+    #ghl-form-wrapper-sicily iframe {
       width: 100%;
       border: none;
       border-radius: 3px;
@@ -530,6 +533,7 @@
 
     #ghl-form-wrapper iframe { min-height: 1494px; }
     #ghl-form-wrapper-tuscany iframe { min-height: 1411px; }
+    #ghl-form-wrapper-sicily iframe { min-height: 1386px; }
 
     .step-meta {
       font-size: 0.84rem;
@@ -934,6 +938,27 @@
         <script src="https://link.vespingaround.com/js/form_embed.js"></script>
       </div>
 
+      <div id="ghl-form-wrapper-sicily" style="display:none;">
+        <iframe
+          src="https://link.vespingaround.com/widget/form/N0s6nXQaiQkJLb4Kws4N"
+          style="width:100%;height:100%;border:none;border-radius:3px"
+          id="inline-N0s6nXQaiQkJLb4Kws4N"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="GA Sicily"
+          data-height="1386"
+          data-layout-iframe-id="inline-N0s6nXQaiQkJLb4Kws4N"
+          data-form-id="N0s6nXQaiQkJLb4Kws4N"
+          title="GA Sicily"
+        ></iframe>
+        <script src="https://link.vespingaround.com/js/form_embed.js"></script>
+      </div>
+
       <div id="ghl-form-wrapper-tuscany" style="display:none;">
         <iframe
           src="https://link.vespingaround.com/widget/form/IhaKTPEBD7nSKT4X9zrv"
@@ -1252,7 +1277,7 @@
           headline: "Explore Sicily on a Classic Vespa",
           subheadline: "All-inclusive, fully guided multi-day tours through coastal villages, ancient temples, and Sicilian culture.",
           quizTitle: "Ready to Experience Sicily Like Never Before?",
-          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Sicily vacation.",
+          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Sicily vacation. You will receive a Vesping Around curated Sicily itinerary so you can discover the real Sicily.",
           leadTitle: "Get your detailed itinerary by email",
           leadCopy: "Enter your details and we'll email your detailed Sicily itinerary. Then you can book a free, no-pressure planning consultation with Mauro."
         },
@@ -1422,6 +1447,7 @@
 
       const ghlFormWrapper = document.getElementById("ghl-form-wrapper");
       const ghlFormWrapperTuscany = document.getElementById("ghl-form-wrapper-tuscany");
+      const ghlFormWrapperSicily = document.getElementById("ghl-form-wrapper-sicily");
 
       function applyPersonalization(destinationKey) {
         const content = destinationContent[destinationKey] || destinationContent.general;
@@ -1443,14 +1469,22 @@
         if (destinationKey === "general") {
           ghlFormWrapper.style.display = "block";
           ghlFormWrapperTuscany.style.display = "none";
+          ghlFormWrapperSicily.style.display = "none";
           quizShell.style.display = "none";
         } else if (destinationKey === "tuscany") {
           ghlFormWrapper.style.display = "none";
           ghlFormWrapperTuscany.style.display = "block";
+          ghlFormWrapperSicily.style.display = "none";
+          quizShell.style.display = "none";
+        } else if (destinationKey === "sicily") {
+          ghlFormWrapper.style.display = "none";
+          ghlFormWrapperTuscany.style.display = "none";
+          ghlFormWrapperSicily.style.display = "block";
           quizShell.style.display = "none";
         } else {
           ghlFormWrapper.style.display = "none";
           ghlFormWrapperTuscany.style.display = "none";
+          ghlFormWrapperSicily.style.display = "none";
           quizShell.style.display = "";
         }
         cta.textContent = useRouteCtaVariant ? "Get My Free Personalized Italy Route Plan" : "Get Free Personalized Trip Plan";
