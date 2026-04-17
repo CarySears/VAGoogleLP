@@ -814,19 +814,23 @@
       <article class="media-card media-card-wide">
         <h3>Experience Film</h3>
         <p>A cinematic preview of the Vesping Around style, pace, and atmosphere.</p>
-        <video
-          class="media-video"
-          controls
-          playsinline
-          preload="none"
-          poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6711b183601ea92f6fd9b352.jpeg"
-        >
-          <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/mp4">
-          <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/quicktime">
-          <a href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov">Watch experience film</a>
-        </video>
-        <p class="media-help">If your browser cannot play this file inline, open the full video directly.</p>
+        <div id="experience-video-wrap">
+          <video
+            id="experience-video"
+            class="media-video"
+            controls
+            playsinline
+            preload="none"
+            poster="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/6711b183601ea92f6fd9b352.jpeg"
+          >
+            <source src="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov" type="video/quicktime">
+          </video>
+          <p id="experience-video-notice" class="media-help" style="display:none">
+            Your browser does not support QuickTime video playback. Use the button below to open the film directly (works in Safari, VLC, and most video players).
+          </p>
+        </div>
         <a
+          id="experience-film-link"
           class="btn btn-secondary btn-link media-link"
           href="https://assets.cdn.filesafe.space/HGE21CBaknlKH4BuYcpz/media/67be05ded5a8ef0a2a7c4da3.mov"
           target="_blank"
@@ -1538,6 +1542,35 @@
       showStep(0);
       readQuizAnswers();
       updateDebugPanel();
+
+      (function initExperienceVideo() {
+        var video = document.getElementById("experience-video");
+        var notice = document.getElementById("experience-video-notice");
+        var filmLink = document.getElementById("experience-film-link");
+        if (!video || !notice || !filmLink) return;
+
+        function showFallback() {
+          notice.style.display = "";
+          filmLink.style.fontWeight = "bold";
+          video.style.display = "none";
+        }
+
+        var source = video.querySelector("source");
+
+        // canPlayType returns "" when the browser definitively cannot play the format.
+        // Chrome and Firefox return "" for video/quicktime (ProRes .mov).
+        // Safari returns "probably".
+        var canPlayMov = video.canPlayType("video/quicktime") !== "";
+        if (!canPlayMov) {
+          showFallback();
+          return;
+        }
+
+        video.addEventListener("error", showFallback);
+        if (source) {
+          source.addEventListener("error", showFallback);
+        }
+      }());
     })();
   </script>
 </body>
