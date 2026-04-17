@@ -511,6 +511,20 @@
       background: #fffdf9;
     }
 
+    #ghl-form-wrapper {
+      margin-top: 2rem;
+      width: 100%;
+      min-height: 1494px;
+    }
+
+    #ghl-form-wrapper iframe {
+      width: 100%;
+      min-height: 1494px;
+      border: none;
+      border-radius: 3px;
+      display: block;
+    }
+
     .step-meta {
       font-size: 0.84rem;
       text-transform: uppercase;
@@ -893,6 +907,27 @@
       <p class="quiz-pricing-note" id="quiz-pricing-note">
         Our multi-day all-inclusive trips start at $3,150 per person and include everything: a modern Vespa, one central high-end boutique stay, on-site guide, authentic local meals, and activities.
       </p>
+      <div id="ghl-form-wrapper" style="display:none;">
+        <iframe
+          src="https://link.vespingaround.com/widget/form/pgEL6ygwDBvc9zrpfEbi"
+          style="width:100%;height:100%;border:none;border-radius:3px"
+          id="inline-pgEL6ygwDBvc9zrpfEbi"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="GA General"
+          data-height="1494"
+          data-layout-iframe-id="inline-pgEL6ygwDBvc9zrpfEbi"
+          data-form-id="pgEL6ygwDBvc9zrpfEbi"
+          title="GA General"
+        ></iframe>
+        <script src="https://link.vespingaround.com/js/form_embed.js"></script>
+      </div>
+
       <div class="quiz-shell" id="quiz-shell" data-webhook-url="">
         <form id="quiz-form">
           <div class="quiz-step active" data-step="1">
@@ -1358,6 +1393,8 @@
         updateStepMeta();
       }
 
+      const ghlFormWrapper = document.getElementById("ghl-form-wrapper");
+
       function applyPersonalization(destinationKey) {
         const content = destinationContent[destinationKey] || destinationContent.general;
         const badge = document.getElementById("destination-badge");
@@ -1374,6 +1411,14 @@
         quizSubtitle.textContent = content.quizSubtitle;
         leadStepTitle.textContent = content.leadTitle;
         leadStepCopy.textContent = content.leadCopy;
+
+        if (destinationKey === "general") {
+          ghlFormWrapper.style.display = "block";
+          quizShell.style.display = "none";
+        } else {
+          ghlFormWrapper.style.display = "none";
+          quizShell.style.display = "";
+        }
         cta.textContent = useRouteCtaVariant ? "Get My Free Personalized Italy Route Plan" : "Get Free Personalized Trip Plan";
 
         document.querySelectorAll(".dynamic-cta").forEach((button) => {
