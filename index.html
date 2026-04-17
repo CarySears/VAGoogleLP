@@ -511,19 +511,25 @@
       background: #fffdf9;
     }
 
-    #ghl-form-wrapper {
+    #ghl-form-wrapper,
+    #ghl-form-wrapper-tuscany {
       margin-top: 2rem;
       width: 100%;
-      min-height: 1494px;
     }
 
-    #ghl-form-wrapper iframe {
+    #ghl-form-wrapper { min-height: 1494px; }
+    #ghl-form-wrapper-tuscany { min-height: 1411px; }
+
+    #ghl-form-wrapper iframe,
+    #ghl-form-wrapper-tuscany iframe {
       width: 100%;
-      min-height: 1494px;
       border: none;
       border-radius: 3px;
       display: block;
     }
+
+    #ghl-form-wrapper iframe { min-height: 1494px; }
+    #ghl-form-wrapper-tuscany iframe { min-height: 1411px; }
 
     .step-meta {
       font-size: 0.84rem;
@@ -928,6 +934,27 @@
         <script src="https://link.vespingaround.com/js/form_embed.js"></script>
       </div>
 
+      <div id="ghl-form-wrapper-tuscany" style="display:none;">
+        <iframe
+          src="https://link.vespingaround.com/widget/form/IhaKTPEBD7nSKT4X9zrv"
+          style="width:100%;height:100%;border:none;border-radius:3px"
+          id="inline-IhaKTPEBD7nSKT4X9zrv"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="GA Tuscany"
+          data-height="1411"
+          data-layout-iframe-id="inline-IhaKTPEBD7nSKT4X9zrv"
+          data-form-id="IhaKTPEBD7nSKT4X9zrv"
+          title="GA Tuscany"
+        ></iframe>
+        <script src="https://link.vespingaround.com/js/form_embed.js"></script>
+      </div>
+
       <div class="quiz-shell" id="quiz-shell" data-webhook-url="">
         <form id="quiz-form">
           <div class="quiz-step active" data-step="1">
@@ -1216,7 +1243,7 @@
           headline: "Ride Through Tuscany on a Classic Vespa",
           subheadline: "All-inclusive, fully guided multi-day tours through Chianti, medieval hilltowns, and the Tuscan countryside.",
           quizTitle: "Ready to Experience Tuscany Like Never Before?",
-          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Tuscany vacation.",
+          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Tuscany vacation. You will receive a Vesping Around curated Tuscany itinerary so you can discover the real Tuscany.",
           leadTitle: "Get your detailed itinerary by email",
           leadCopy: "Enter your details and we'll email your detailed Tuscany itinerary. Then you can book a free, no-pressure planning consultation with Mauro."
         },
@@ -1394,6 +1421,7 @@
       }
 
       const ghlFormWrapper = document.getElementById("ghl-form-wrapper");
+      const ghlFormWrapperTuscany = document.getElementById("ghl-form-wrapper-tuscany");
 
       function applyPersonalization(destinationKey) {
         const content = destinationContent[destinationKey] || destinationContent.general;
@@ -1414,9 +1442,15 @@
 
         if (destinationKey === "general") {
           ghlFormWrapper.style.display = "block";
+          ghlFormWrapperTuscany.style.display = "none";
+          quizShell.style.display = "none";
+        } else if (destinationKey === "tuscany") {
+          ghlFormWrapper.style.display = "none";
+          ghlFormWrapperTuscany.style.display = "block";
           quizShell.style.display = "none";
         } else {
           ghlFormWrapper.style.display = "none";
+          ghlFormWrapperTuscany.style.display = "none";
           quizShell.style.display = "";
         }
         cta.textContent = useRouteCtaVariant ? "Get My Free Personalized Italy Route Plan" : "Get Free Personalized Trip Plan";
