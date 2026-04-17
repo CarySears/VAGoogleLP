@@ -513,7 +513,8 @@
 
     #ghl-form-wrapper,
     #ghl-form-wrapper-tuscany,
-    #ghl-form-wrapper-sicily {
+    #ghl-form-wrapper-sicily,
+    #ghl-form-wrapper-puglia {
       margin-top: 2rem;
       width: 100%;
     }
@@ -521,10 +522,12 @@
     #ghl-form-wrapper { min-height: 1494px; }
     #ghl-form-wrapper-tuscany { min-height: 1411px; }
     #ghl-form-wrapper-sicily { min-height: 1386px; }
+    #ghl-form-wrapper-puglia { min-height: 1386px; }
 
     #ghl-form-wrapper iframe,
     #ghl-form-wrapper-tuscany iframe,
-    #ghl-form-wrapper-sicily iframe {
+    #ghl-form-wrapper-sicily iframe,
+    #ghl-form-wrapper-puglia iframe {
       width: 100%;
       border: none;
       border-radius: 3px;
@@ -534,6 +537,7 @@
     #ghl-form-wrapper iframe { min-height: 1494px; }
     #ghl-form-wrapper-tuscany iframe { min-height: 1411px; }
     #ghl-form-wrapper-sicily iframe { min-height: 1386px; }
+    #ghl-form-wrapper-puglia iframe { min-height: 1386px; }
 
     .step-meta {
       font-size: 0.84rem;
@@ -938,6 +942,27 @@
         <script src="https://link.vespingaround.com/js/form_embed.js"></script>
       </div>
 
+      <div id="ghl-form-wrapper-puglia" style="display:none;">
+        <iframe
+          src="https://link.vespingaround.com/widget/form/xb0d8IMffD0vKWFvzNco"
+          style="width:100%;height:100%;border:none;border-radius:3px"
+          id="inline-xb0d8IMffD0vKWFvzNco"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="GA Puglia"
+          data-height="1386"
+          data-layout-iframe-id="inline-xb0d8IMffD0vKWFvzNco"
+          data-form-id="xb0d8IMffD0vKWFvzNco"
+          title="GA Puglia"
+        ></iframe>
+        <script src="https://link.vespingaround.com/js/form_embed.js"></script>
+      </div>
+
       <div id="ghl-form-wrapper-sicily" style="display:none;">
         <iframe
           src="https://link.vespingaround.com/widget/form/N0s6nXQaiQkJLb4Kws4N"
@@ -1286,7 +1311,7 @@
           headline: "Discover Hidden Puglia by Vespa",
           subheadline: "All-inclusive, fully guided multi-day tours through whitewashed trulli villages and the hidden heel of Italy.",
           quizTitle: "Ready to Experience Puglia Like Never Before?",
-          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Puglia vacation.",
+          quizSubtitle: "Please answer a couple quick questions so we can tailor your curated Puglia vacation. You will receive a Vesping Around curated Puglia itinerary so you can discover the real Puglia.",
           leadTitle: "Get your detailed itinerary by email",
           leadCopy: "Enter your details and we'll email your detailed Puglia itinerary. Then you can book a free, no-pressure planning consultation with Mauro."
         }
@@ -1448,6 +1473,7 @@
       const ghlFormWrapper = document.getElementById("ghl-form-wrapper");
       const ghlFormWrapperTuscany = document.getElementById("ghl-form-wrapper-tuscany");
       const ghlFormWrapperSicily = document.getElementById("ghl-form-wrapper-sicily");
+      const ghlFormWrapperPuglia = document.getElementById("ghl-form-wrapper-puglia");
 
       function applyPersonalization(destinationKey) {
         const content = destinationContent[destinationKey] || destinationContent.general;
@@ -1470,21 +1496,31 @@
           ghlFormWrapper.style.display = "block";
           ghlFormWrapperTuscany.style.display = "none";
           ghlFormWrapperSicily.style.display = "none";
+          ghlFormWrapperPuglia.style.display = "none";
           quizShell.style.display = "none";
         } else if (destinationKey === "tuscany") {
           ghlFormWrapper.style.display = "none";
           ghlFormWrapperTuscany.style.display = "block";
           ghlFormWrapperSicily.style.display = "none";
+          ghlFormWrapperPuglia.style.display = "none";
           quizShell.style.display = "none";
         } else if (destinationKey === "sicily") {
           ghlFormWrapper.style.display = "none";
           ghlFormWrapperTuscany.style.display = "none";
           ghlFormWrapperSicily.style.display = "block";
+          ghlFormWrapperPuglia.style.display = "none";
+          quizShell.style.display = "none";
+        } else if (destinationKey === "puglia") {
+          ghlFormWrapper.style.display = "none";
+          ghlFormWrapperTuscany.style.display = "none";
+          ghlFormWrapperSicily.style.display = "none";
+          ghlFormWrapperPuglia.style.display = "block";
           quizShell.style.display = "none";
         } else {
           ghlFormWrapper.style.display = "none";
           ghlFormWrapperTuscany.style.display = "none";
           ghlFormWrapperSicily.style.display = "none";
+          ghlFormWrapperPuglia.style.display = "none";
           quizShell.style.display = "";
         }
         cta.textContent = useRouteCtaVariant ? "Get My Free Personalized Italy Route Plan" : "Get Free Personalized Trip Plan";
